@@ -1,0 +1,495 @@
+{
+  "version": 1,
+  "gathas": [
+    {
+      "id": "g001",
+      "title": "Breathing In",
+      "body": "Breathing in, I calm my body.\nBreathing out, I smile.\nDwelling in the present moment,\nI know this is a wonderful moment.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["breathing", "present moment", "smile"]
+    },
+    {
+      "id": "g002",
+      "title": "Waking Up",
+      "body": "Waking up this morning, I smile.\nTwenty-four brand new hours are before me.\nI vow to live fully in each moment\nand to look at all beings with eyes of compassion.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["morning", "present moment", "compassion"]
+    },
+    {
+      "id": "g003",
+      "title": "Walking",
+      "body": "The mind can go in a thousand directions,\nbut on this beautiful path, I walk in peace.\nWith each step, the wind blows.\nWith each step, a flower blooms.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["walking", "peace", "present moment"]
+    },
+    {
+      "id": "g004",
+      "title": "Present Moment",
+      "body": "I have arrived.\nI am home.\nIn the here,\nin the now.\nI am solid.\nI am free.\nIn the ultimate I dwell.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["present moment", "home", "freedom"]
+    },
+    {
+      "id": "g005",
+      "title": "Eating",
+      "body": "In this food I see clearly\nthe presence of the entire universe\nsupporting my existence.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["eating", "gratitude", "mindfulness"]
+    },
+    {
+      "id": "g006",
+      "title": "The Cloud Never Dies",
+      "body": "A cloud never dies.\nIt only transforms.\nLook at the cloud in your teacup,\nin the river, in the rain.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["impermanence", "transformation", "nature"]
+    },
+    {
+      "id": "g007",
+      "title": "Washing Dishes",
+      "body": "Washing the dishes\nis like bathing a baby Buddha.\nThe profane is the sacred.\nEveryday mind is Buddha's mind.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["daily life", "mindfulness", "sacred"]
+    },
+    {
+      "id": "g008",
+      "title": "Loving Kindness",
+      "body": "May I be peaceful, happy, and light\nin body and in spirit.\nMay I be free from injury.\nMay I live in safety.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["compassion", "loving kindness", "safety"]
+    },
+    {
+      "id": "g009",
+      "title": "Evening",
+      "body": "The day is ending.\nOur life is one day shorter.\nLet us look carefully at what we have done.\nLet us practice diligently,\nputting our whole heart into the path of meditation.",
+      "attribution": "Traditional",
+      "tags": ["evening", "reflection", "practice"]
+    },
+    {
+      "id": "g010",
+      "title": "The Flower",
+      "body": "I hold a flower in my hand.\nThe whole cosmos is in it.\nEarth, sun, cloud, river,\ntime, space — nothing is absent.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["nature", "present moment", "interconnection"]
+    },
+    {
+      "id": "g011",
+      "title": "No Coming, No Going",
+      "body": "No coming, no going,\nno after, no before.\nI hold you close to me,\nI release you to be so free,\nbecause I am in you\nand you are in me.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["impermanence", "love", "interconnection"]
+    },
+    {
+      "id": "g012",
+      "title": "Beginning Anew",
+      "body": "Knowing that words can create suffering or happiness,\nI am determined to speak truthfully and constructively,\nusing only words that inspire confidence, joy, and hope.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["speech", "reconciliation", "fresh start"]
+    },
+    {
+      "id": "g013",
+      "title": "Listening",
+      "body": "I listen to you\nwith the whole of my being.\nI am here.\nNothing else is here but me\nand the sound of your voice.",
+      "attribution": "Traditional",
+      "tags": ["listening", "compassion", "presence"]
+    },
+    {
+      "id": "g014",
+      "title": "Sitting Quietly",
+      "body": "Sitting quietly,\ndoing nothing,\nspring comes,\nand the grass grows by itself.",
+      "attribution": "Zen poem",
+      "tags": ["sitting", "stillness", "nature"]
+    },
+    {
+      "id": "g015",
+      "title": "Interbeing",
+      "body": "If you are a poet, you will see clearly\nthat there is a cloud floating in this sheet of paper.\nWithout a cloud, there will be no rain;\nwithout rain, the trees cannot grow;\nand without trees, we cannot make paper.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["interconnection", "nature", "wisdom"]
+    },
+    {
+      "id": "g016",
+      "title": "Touching the Earth",
+      "body": "I call the Earth to witness:\nthe Earth is my mother.\nI am the Earth.\nShe is me.",
+      "attribution": "Traditional",
+      "tags": ["earth", "gratitude", "connection"]
+    },
+    {
+      "id": "g017",
+      "title": "Stopping",
+      "body": "Stop!\nYou don't need to run.\nYou don't need to search.\nEverything you need is already here.",
+      "attribution": "Traditional",
+      "tags": ["stillness", "present moment", "enough"]
+    },
+    {
+      "id": "g018",
+      "title": "The Smile",
+      "body": "Sometimes your joy is the source of your smile,\nbut sometimes your smile can be the source of your joy.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["joy", "smile", "practice"]
+    },
+    {
+      "id": "g019",
+      "title": "Embracing Anger",
+      "body": "Breathing in, I know that anger is in me.\nBreathing out, I smile at my anger.\nI am there for my anger\nas a mother holds her child.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["anger", "compassion", "emotion"]
+    },
+    {
+      "id": "g020",
+      "title": "The River",
+      "body": "Life is like a river.\nYou cannot step in it twice.\nYet here you stand,\nstepping in again and again,\nand each time it is new.",
+      "attribution": "Traditional",
+      "tags": ["impermanence", "nature", "freshness"]
+    },
+    {
+      "id": "g021",
+      "title": "Bell of Mindfulness",
+      "body": "Listen, listen,\nthis wonderful sound\nbrings me back\nto my true home.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["bell", "mindfulness", "present moment"]
+    },
+    {
+      "id": "g022",
+      "title": "This Moment",
+      "body": "The present moment\nis the only moment\navailable to us,\nand it is the door\nto all moments.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["present moment", "awareness", "time"]
+    },
+    {
+      "id": "g023",
+      "title": "Old Pond",
+      "body": "An old silent pond.\nA frog jumps into the pond.\nSplash! Silence again.",
+      "attribution": "Matsuo Bashō",
+      "tags": ["haiku", "stillness", "nature"]
+    },
+    {
+      "id": "g024",
+      "title": "Autumn Moonlight",
+      "body": "Autumn moonlight —\na worm digs silently\ninto the chestnut.",
+      "attribution": "Matsuo Bashō",
+      "tags": ["haiku", "nature", "impermanence"]
+    },
+    {
+      "id": "g025",
+      "title": "Over the Wintry Forest",
+      "body": "Over the wintry forest,\nwinds howl in rage\nwith no leaves to blow.",
+      "attribution": "Natsume Soseki",
+      "tags": ["haiku", "nature", "stillness"]
+    },
+    {
+      "id": "g026",
+      "title": "In the Beginner's Mind",
+      "body": "In the beginner's mind there are many possibilities,\nbut in the expert's mind there are few.",
+      "attribution": "Shunryu Suzuki",
+      "tags": ["beginners mind", "wisdom", "openness"]
+    },
+    {
+      "id": "g027",
+      "title": "Not Two",
+      "body": "The great way is not difficult\nfor those who have no preferences.\nWhen love and hate are both absent,\neverything becomes clear and undisguised.",
+      "attribution": "Sengcan",
+      "tags": ["non-duality", "wisdom", "equanimity"]
+    },
+    {
+      "id": "g028",
+      "title": "Just This",
+      "body": "Before enlightenment,\nchop wood, carry water.\nAfter enlightenment,\nchop wood, carry water.",
+      "attribution": "Zen proverb",
+      "tags": ["daily life", "practice", "wisdom"]
+    },
+    {
+      "id": "g029",
+      "title": "Soft Rain",
+      "body": "Let the soft animal of your body\nlove what it loves.\nTell me about despair, yours,\nand I will tell you mine.",
+      "attribution": "Mary Oliver",
+      "tags": ["self-compassion", "nature", "honesty"]
+    },
+    {
+      "id": "g030",
+      "title": "Instructions for Living a Life",
+      "body": "Pay attention.\nBe astonished.\nTell about it.",
+      "attribution": "Mary Oliver",
+      "tags": ["attention", "wonder", "life"]
+    },
+    {
+      "id": "g031",
+      "title": "What Is It You Plan to Do",
+      "body": "Tell me, what is it you plan to do\nwith your one wild and precious life?",
+      "attribution": "Mary Oliver",
+      "tags": ["life", "intention", "wonder"]
+    },
+    {
+      "id": "g032",
+      "title": "Keeping Quiet",
+      "body": "Now we will count to twelve\nand we will all keep still.\n\nFor once on the face of the Earth,\nlet's not speak in any language;\nlet's stop for one second,\nand not move our arms so much.",
+      "attribution": "Pablo Neruda",
+      "tags": ["stillness", "silence", "peace"]
+    },
+    {
+      "id": "g033",
+      "title": "The Guest House",
+      "body": "This being human is a guest house.\nEvery morning a new arrival.\n\nA joy, a depression, a meanness,\nsome momentary awareness comes\nas an unexpected visitor.",
+      "attribution": "Rumi",
+      "tags": ["acceptance", "emotion", "openness"]
+    },
+    {
+      "id": "g034",
+      "title": "Out Beyond Ideas",
+      "body": "Out beyond ideas of wrongdoing and rightdoing,\nthere is a field.\nI'll meet you there.",
+      "attribution": "Rumi",
+      "tags": ["non-judgment", "love", "peace"]
+    },
+    {
+      "id": "g035",
+      "title": "The Reed Flute",
+      "body": "Listen to the story told by the reed,\nof being separated.\n\nSince I was cut from the reed bed,\nI have made this crying sound.",
+      "attribution": "Rumi",
+      "tags": ["longing", "music", "connection"]
+    },
+    {
+      "id": "g036",
+      "title": "Love Dogs",
+      "body": "The grief you cry out from\ndraws you toward union.\n\nYour pure sadness\nthat wants help\nis the secret cup.",
+      "attribution": "Rumi",
+      "tags": ["grief", "longing", "surrender"]
+    },
+    {
+      "id": "g037",
+      "title": "Hokku",
+      "body": "The temple bell stops —\nbut the sound keeps coming\nout of the flowers.",
+      "attribution": "Matsuo Bashō",
+      "tags": ["haiku", "bell", "nature"]
+    },
+    {
+      "id": "g038",
+      "title": "First Cold Showers",
+      "body": "First cold showers —\neven the monkey seems to want\na little coat of straw.",
+      "attribution": "Matsuo Bashō",
+      "tags": ["haiku", "compassion", "nature"]
+    },
+    {
+      "id": "g039",
+      "title": "The Way It Is",
+      "body": "There's a thread you follow.\nIt goes among things that change.\nBut it doesn't change.\n\nPeople wonder about what you are pursuing.\nYou have to explain about the thread.",
+      "attribution": "William Stafford",
+      "tags": ["intention", "path", "life"]
+    },
+    {
+      "id": "g040",
+      "title": "Kindness",
+      "body": "Before you know kindness as the deepest thing inside,\nyou must know sorrow as the other deepest thing.",
+      "attribution": "Naomi Shihab Nye",
+      "tags": ["kindness", "sorrow", "compassion"]
+    },
+    {
+      "id": "g041",
+      "title": "Love After Love",
+      "body": "The time will come\nwhen, with elation,\nyou will greet yourself arriving\nat your own door, in your own mirror,\nand each will smile at the other's welcome.",
+      "attribution": "Derek Walcott",
+      "tags": ["self-love", "healing", "joy"]
+    },
+    {
+      "id": "g042",
+      "title": "Wild Geese",
+      "body": "You do not have to be good.\nYou do not have to walk on your knees\nfor a hundred miles through the desert repenting.\nYou only have to let the soft animal of your body\nlove what it loves.",
+      "attribution": "Mary Oliver",
+      "tags": ["self-compassion", "nature", "freedom"]
+    },
+    {
+      "id": "g043",
+      "title": "The Peace of Wild Things",
+      "body": "When despair for the world grows in me\nand I wake in the night at the least sound\nin fear of what my life and my children's lives may be,\nI go and lie down where the wood drake\nrests in his beauty on the water.",
+      "attribution": "Wendell Berry",
+      "tags": ["nature", "peace", "fear"]
+    },
+    {
+      "id": "g044",
+      "title": "Rain",
+      "body": "Rain, whose soft architectural hands\nhave power to cut stones,\nand chisel to shapes of grandeur\nthe very mountains.",
+      "attribution": "Henry Ward Beecher",
+      "tags": ["nature", "patience", "power"]
+    },
+    {
+      "id": "g045",
+      "title": "Equanimity",
+      "body": "This too shall pass.\nLet it come, let it be, let it go.\nThe roots hold.\nThe branches bow and spring back.",
+      "attribution": "Traditional",
+      "tags": ["equanimity", "impermanence", "resilience"]
+    },
+    {
+      "id": "g046",
+      "title": "Morning Bell",
+      "body": "The bell of the temple\nstirs the morning air.\nBirds take flight.\nMind takes flight.\nBoth return to stillness.",
+      "attribution": "Traditional",
+      "tags": ["bell", "morning", "stillness"]
+    },
+    {
+      "id": "g047",
+      "title": "Sitting Practice",
+      "body": "Just sit.\nNot trying to get anywhere.\nNot trying to become anything.\nJust this breath.\nJust this moment.\nJust this.",
+      "attribution": "Traditional",
+      "tags": ["sitting", "meditation", "present moment"]
+    },
+    {
+      "id": "g048",
+      "title": "Autumn Leaves",
+      "body": "One by one the autumn leaves release,\nnot in despair but in surrender.\nEach leaf has known\nevery single summer it was given.",
+      "attribution": "Traditional",
+      "tags": ["impermanence", "nature", "acceptance"]
+    },
+    {
+      "id": "g049",
+      "title": "The Lantern",
+      "body": "Do not search for the light far away.\nLight the lantern within.\nLet it shine on one step,\nthen the next.",
+      "attribution": "Traditional",
+      "tags": ["inner light", "wisdom", "practice"]
+    },
+    {
+      "id": "g050",
+      "title": "No Mud, No Lotus",
+      "body": "Without suffering, there is no happiness,\nand without happiness, there is no suffering.\nThe lotus does not grow on marble.\nIt grows in the mud.",
+      "attribution": "Thich Nhat Hanh",
+      "tags": ["suffering", "happiness", "transformation"]
+    },
+    {
+      "id": "g051",
+      "title": "Returning",
+      "body": "You don't have to travel far.\nThe journey is inward.\nAnd the destination\nis always right here.",
+      "attribution": "Traditional",
+      "tags": ["inner journey", "present moment", "home"]
+    },
+    {
+      "id": "g052",
+      "title": "Between Thoughts",
+      "body": "There is a gap between thoughts.\nA small silence.\nIf you look carefully,\nthat gap is always there.\nThat gap is you.",
+      "attribution": "Traditional",
+      "tags": ["awareness", "meditation", "stillness"]
+    },
+    {
+      "id": "g053",
+      "title": "Not Knowing",
+      "body": "Not knowing is most intimate.\nThe question held gently\nis worth more\nthan a thousand answers grabbed.",
+      "attribution": "Zen proverb",
+      "tags": ["not knowing", "inquiry", "openness"]
+    },
+    {
+      "id": "g054",
+      "title": "Deep Roots",
+      "body": "Even the great oak tree\nwas once an acorn\nthat held its ground\nduring the storm.",
+      "attribution": "Traditional",
+      "tags": ["patience", "resilience", "nature"]
+    },
+    {
+      "id": "g055",
+      "title": "Open Hands",
+      "body": "Hold everything lightly.\nNothing can be grasped forever.\nOpen hands receive more\nthan clenched fists ever could.",
+      "attribution": "Traditional",
+      "tags": ["letting go", "receiving", "non-attachment"]
+    },
+    {
+      "id": "g056",
+      "title": "The Candle",
+      "body": "A candle lit in the dark\ndoes not fight the darkness.\nIt simply shines.\nThat is enough.",
+      "attribution": "Traditional",
+      "tags": ["inner light", "peace", "enough"]
+    },
+    {
+      "id": "g057",
+      "title": "Rain on the Roof",
+      "body": "Rain on the roof at night.\nNo thought of tomorrow.\nJust this sound,\nthis rhythm,\nthis grace.",
+      "attribution": "Traditional",
+      "tags": ["nature", "present moment", "grace"]
+    },
+    {
+      "id": "g058",
+      "title": "Snow",
+      "body": "Under the winter snow\nthe field is resting.\nUnder the winter mind\nthe wisdom is resting.",
+      "attribution": "Traditional",
+      "tags": ["winter", "rest", "wisdom"]
+    },
+    {
+      "id": "g059",
+      "title": "The Mirror",
+      "body": "The mirror reflects all things\nwithout preference.\nMay the mind be like this:\nclear, open, without preference.",
+      "attribution": "Traditional",
+      "tags": ["equanimity", "clarity", "mind"]
+    },
+    {
+      "id": "g060",
+      "title": "This Ordinary Moment",
+      "body": "Nothing special is needed.\nThis cup of tea.\nThis breath.\nThis patch of light on the floor.\nThis is the sacred.",
+      "attribution": "Traditional",
+      "tags": ["ordinary life", "sacred", "present moment"]
+    },
+    {
+      "id": "g061",
+      "title": "Touched by the Wind",
+      "body": "Be like the tree:\nrooted in the earth,\ntouched by the wind,\nreaching toward the light,\nnourishing what rests in your shade.",
+      "attribution": "Traditional",
+      "tags": ["nature", "groundedness", "growth"]
+    },
+    {
+      "id": "g062",
+      "title": "Ripples",
+      "body": "A single act of kindness\nspreads outward\nlike ripples on a still pond —\nbeyond what the eye can see.",
+      "attribution": "Traditional",
+      "tags": ["kindness", "interconnection", "action"]
+    },
+    {
+      "id": "g063",
+      "title": "Breath is Home",
+      "body": "No matter how far you have wandered,\none breath brings you back.\nThe breath is always home.\nYou are never truly lost.",
+      "attribution": "Traditional",
+      "tags": ["breathing", "home", "return"]
+    },
+    {
+      "id": "g064",
+      "title": "The Hermit Crab",
+      "body": "The hermit crab carries its home\neverywhere it goes.\nSo do you.\nYour home is not a place.",
+      "attribution": "Traditional",
+      "tags": ["home", "inner peace", "nature"]
+    },
+    {
+      "id": "g065",
+      "title": "Afternoon Light",
+      "body": "In the late afternoon light,\ndust motes float without purpose.\nAnd yet they are perfect.\nAnd yet so are you.",
+      "attribution": "Traditional",
+      "tags": ["self-acceptance", "light", "present moment"]
+    },
+    {
+      "id": "g066",
+      "title": "The Moon",
+      "body": "The moon does not fight\nthe clouds that cover it.\nIt waits.\nAnd always it emerges,\nunchanged.",
+      "attribution": "Traditional",
+      "tags": ["patience", "equanimity", "nature"]
+    },
+    {
+      "id": "g067",
+      "title": "Nothing to Fix",
+      "body": "You are not a problem to be solved.\nYou are a life to be lived.\nThere is nothing broken here.\nOnly what needs tending.",
+      "attribution": "Traditional",
+      "tags": ["self-acceptance", "wholeness", "healing"]
+    },
+    {
+      "id": "g068",
+      "title": "Beginning",
+      "body": "Every morning the sun rises\nas if for the first time.\nEvery breath you draw\nis a new beginning.",
+      "attribution": "Traditional",
+      "tags": ["morning", "fresh start", "beginners mind"]
+    },
+    {
+      "id": "g069",
+      "title": "The Sky Mind",
+      "body": "The sky does not try to hold\nthe clouds or the birds.\nIt simply holds them\nby letting them go.\nBe like the sky.",
+      "attribution": "Traditional",
+      "tags": ["mind", "awareness", "letting go"]
+    },
+    {
+      "id": "g070",
+      "title": "Enough",
+      "body": "You have walked far today.\nYou have done enough.\nYou have been enough.\nRest now.\nThis moment is enough.",
+      "attribution": "Traditional",
+      "tags": ["rest", "self-compassion", "enough"]
+    }
+  ]
+}
