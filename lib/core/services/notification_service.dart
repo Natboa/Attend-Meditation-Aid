@@ -7,7 +7,6 @@ class NotificationService {
 
   final _plugin = FlutterLocalNotificationsPlugin();
 
-  static const _timerChannelId = 'meditation_timer';
   static const _gathaChannelId = 'daily_gatha';
 
   bool _initialized = false;
@@ -20,15 +19,6 @@ class NotificationService {
     const initSettings = InitializationSettings(android: androidSettings);
 
     await _plugin.initialize(initSettings);
-
-    // Create static channels
-    await _createChannel(
-      id: _timerChannelId,
-      name: 'Meditation timer',
-      description: 'Foreground service notification while the timer runs',
-      importance: Importance.low,
-      sound: null,
-    );
 
     await _createChannel(
       id: _gathaChannelId,

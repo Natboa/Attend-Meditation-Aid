@@ -61,13 +61,15 @@ Always use `Theme.of(context).colorScheme.*` — never hardcode hex values in wi
 - **Phase 1** ✅ Timer, session history, app shell, navigation
 - **Phase 2** ✅ Mindfulness bell notifications
 - **Phase 3** ✅ Gatha library (70 verses, favorites, daily rotation, search)
-- **Phase 4** 🔄 Polish, onboarding — in progress
+- **Phase 4** ✅ Polish, onboarding — complete
   - ✅ Onboarding screen (3-page PageView, permission + battery opt requests)
   - ✅ Router redirects first-time users to `/onboarding` via `routerProvider`
   - ✅ Timer sound picker in Settings (wired to `timerSoundId` pref)
   - ✅ Battery optimization exemption called on bell enable toggle
-  - ⬜ Session completion animation / celebration
-  - ⬜ Animated transitions between timer states
+  - ✅ Session completion overlay — animated card (scale+fade+elastic check), replaces AlertDialog
+  - ✅ Animated transitions — AnimatedSwitcher (fade+slide) on idle↔active controls; pause/play icon crossfade
+  - ✅ Dial ring color — TweenAnimationBuilder<Color?> animates to secondary tint when paused
+  - ✅ App icon — flutter_launcher_icons, adaptive icon (cream #F7F4EF bg + buddha foreground with 16% inset)
 
 ## Sound assets
 

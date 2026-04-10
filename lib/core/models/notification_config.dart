@@ -1,9 +1,4 @@
-import 'package:hive_flutter/hive_flutter.dart';
-
-part 'notification_config.g.dart';
-
-@HiveType(typeId: 1)
-class NotificationConfig extends HiveObject {
+class NotificationConfig {
   NotificationConfig({
     required this.enabled,
     required this.activeDays,
@@ -15,30 +10,19 @@ class NotificationConfig extends HiveObject {
     required this.dailyGathaHour,
   });
 
-  @HiveField(0)
   bool enabled;
 
   /// ISO weekday: 1 = Monday, 7 = Sunday.
-  @HiveField(1)
   List<int> activeDays;
 
-  @HiveField(2)
   int startHour;
-
-  @HiveField(3)
   int endHour;
-
-  @HiveField(4)
   int frequencyPerDay;
 
   /// Sound used for mindfulness bells — independent of timer sound.
-  @HiveField(5)
   String bellSoundId;
 
-  @HiveField(6)
   bool dailyGathaEnabled;
-
-  @HiveField(7)
   int dailyGathaHour;
 
   factory NotificationConfig.defaults() => NotificationConfig(
@@ -47,7 +31,7 @@ class NotificationConfig extends HiveObject {
         startHour: 9,
         endHour: 18,
         frequencyPerDay: 3,
-        bellSoundId: 'bell_tibetan',
+        bellSoundId: 'tibetan_bowl',
         dailyGathaEnabled: false,
         dailyGathaHour: 7,
       );

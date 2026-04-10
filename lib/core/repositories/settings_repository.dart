@@ -10,7 +10,7 @@ class SettingsRepository {
   SettingsRepository(this._prefs);
 
   // Timer sound (independent of notification bell sound)
-  String get timerSoundId => _prefs.getString(_timerSoundKey) ?? 'bell_tibetan';
+  String get timerSoundId => _prefs.getString(_timerSoundKey) ?? 'tibetan_bowl';
   Future<void> setTimerSoundId(String id) => _prefs.setString(_timerSoundKey, id);
 
   // Last used timer duration, for quick-start

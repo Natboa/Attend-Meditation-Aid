@@ -6,7 +6,7 @@ class TimerState {
     this.elapsed = Duration.zero,
     this.target,
     this.interval,
-    this.soundId = 'bell_tibetan',
+    this.soundId = 'tibetan_bowl',
     this.startedAt,
     this.lastIntervalAt = Duration.zero,
   });

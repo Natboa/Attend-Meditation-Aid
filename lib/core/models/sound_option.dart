@@ -13,34 +13,34 @@ class SoundOption {
 
   static const List<SoundOption> all = [
     SoundOption(
-      id: 'bell_tibetan',
-      displayName: 'Tibetan Bell',
-      assetPath: 'assets/audio/bell_tibetan.ogg',
-      androidRawName: 'bell_tibetan',
+      id: 'tibetan_bowl',
+      displayName: 'Tibetan Bowl',
+      assetPath: 'assets/audio/tibetan_bowl_1.mp3',
+      androidRawName: 'tibetan_bowl_1',
     ),
     SoundOption(
-      id: 'bowl_singing',
+      id: 'meditation_bowl',
+      displayName: 'Meditation Bowl',
+      assetPath: 'assets/audio/meditation_bowl.mp3',
+      androidRawName: 'meditation_bowl',
+    ),
+    SoundOption(
+      id: 'zen_bell',
+      displayName: 'Zen Bell',
+      assetPath: 'assets/audio/zen_notification.mp3',
+      androidRawName: 'zen_notification',
+    ),
+    SoundOption(
+      id: 'singing_bowl',
       displayName: 'Singing Bowl',
-      assetPath: 'assets/audio/bowl_singing.ogg',
-      androidRawName: 'bowl_singing',
+      assetPath: 'assets/audio/cuenco_zen.mp3',
+      androidRawName: 'cuenco_zen',
     ),
     SoundOption(
-      id: 'chime_soft',
-      displayName: 'Soft Chime',
-      assetPath: 'assets/audio/chime_soft.ogg',
-      androidRawName: 'chime_soft',
-    ),
-    SoundOption(
-      id: 'chime_crystal',
-      displayName: 'Crystal Chime',
-      assetPath: 'assets/audio/chime_crystal.ogg',
-      androidRawName: 'chime_crystal',
-    ),
-    SoundOption(
-      id: 'nature_rain',
-      displayName: 'Rain Drop',
-      assetPath: 'assets/audio/nature_rain.ogg',
-      androidRawName: 'nature_rain',
+      id: 'gentle_gong',
+      displayName: 'Gentle Gong',
+      assetPath: 'assets/audio/gentle_gong.mp3',
+      androidRawName: 'gentle_gong',
     ),
   ];
 

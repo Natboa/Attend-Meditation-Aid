@@ -7,13 +7,12 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import be.tramckrijte.workmanager.BackgroundWorker
+import dev.fluttercommunity.workmanager.BackgroundWorker
 
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != Intent.ACTION_BOOT_COMPLETED) return
 
-        // Re-enqueue the daily bell scheduler via WorkManager
         val request = OneTimeWorkRequestBuilder<BackgroundWorker>()
             .setConstraints(
                 Constraints.Builder()

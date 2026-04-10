@@ -29,6 +29,9 @@ void backgroundTaskDispatcher() {
     if (config.enabled) {
       await SchedulerService.instance.rescheduleBells(config);
     }
+    if (config.dailyGathaEnabled) {
+      await SchedulerService.instance.scheduleDailyGatha(config);
+    }
 
     // Re-enqueue for tomorrow
     await _enqueueDailyTask(delay: const Duration(hours: 24));
@@ -64,7 +67,7 @@ Future<void> _enqueueDailyTask({Duration delay = Duration.zero}) async {
     tag: _dailyTaskTag,
     initialDelay: delay,
     existingWorkPolicy: ExistingWorkPolicy.replace,
-    constraints: Constraints(networkType: NetworkType.not_required),
+    constraints: Constraints(networkType: NetworkType.notRequired),
   );
 }
 

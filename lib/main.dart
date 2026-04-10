@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'app.dart';
 import 'core/models/timer_session.dart';
-import 'core/models/notification_config.dart';
 import 'core/providers/repositories.dart';
 import 'core/repositories/session_repository.dart';
 import 'core/services/audio_service.dart';
@@ -18,7 +17,6 @@ Future<void> main() async {
   // Hive
   await Hive.initFlutter();
   Hive.registerAdapter(TimerSessionAdapter());
-  Hive.registerAdapter(NotificationConfigAdapter());
   await SessionRepository.openBox();
 
   // SharedPreferences

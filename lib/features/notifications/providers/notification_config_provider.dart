@@ -55,6 +55,24 @@ class NotificationConfigNotifier extends Notifier<NotificationConfig> {
     await _persistAndReschedule();
   }
 
+  Future<void> setDailyGathaEnabled(bool value) async {
+    state = _copyWith(dailyGathaEnabled: value);
+    await _persist();
+    if (value) {
+      await SchedulerService.instance.scheduleDailyGatha(state);
+    } else {
+      await SchedulerService.instance.cancelDailyGatha();
+    }
+  }
+
+  Future<void> setDailyGathaHour(int hour) async {
+    state = _copyWith(dailyGathaHour: hour);
+    await _persist();
+    if (state.dailyGathaEnabled) {
+      await SchedulerService.instance.scheduleDailyGatha(state);
+    }
+  }
+
   Future<void> _persistAndReschedule() async {
     await _persist();
     if (state.enabled) {

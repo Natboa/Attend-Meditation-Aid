@@ -19,29 +19,63 @@ class TimerScreen extends ConsumerStatefulWidget {
 }
 
 class _TimerScreenState extends ConsumerState<TimerScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   Duration? _selectedDuration = const Duration(minutes: 15);
   Duration? _selectedInterval;
 
+  // Captured when session finishes, shown on completion overlay
+  Duration _completedElapsed = Duration.zero;
+  bool _showCompletion = false;
+
+  // Slow breathe-pulse while running
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
+
+  // Completion overlay: overlay fade + card scale + check pop
+  late AnimationController _completionController;
+  late Animation<double> _overlayFade;
+  late Animation<double> _cardScale;
+  late Animation<double> _checkScale;
 
   @override
   void initState() {
     super.initState();
+
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 4),
-    );
+    )..repeat(reverse: true);
+
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.02).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
-    _pulseController.repeat(reverse: true);
+
+    _completionController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _overlayFade = CurvedAnimation(
+      parent: _completionController,
+      curve: Curves.easeOut,
+    );
+
+    _cardScale = Tween<double>(begin: 0.88, end: 1.0).animate(
+      CurvedAnimation(parent: _completionController, curve: Curves.easeOutBack),
+    );
+
+    _checkScale = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _completionController,
+        curve: const Interval(0.35, 1.0, curve: Curves.elasticOut),
+      ),
+    );
   }
 
   @override
   void dispose() {
     _pulseController.dispose();
+    _completionController.dispose();
     super.dispose();
   }
 
@@ -51,22 +85,28 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
         _selectedDuration ?? const Duration(minutes: 15),
       );
     }
-    if (s.target != null) {
-      return DurationFormatter.format(s.remaining);
-    }
-    return DurationFormatter.format(s.elapsed);
+    return DurationFormatter.format(s.remaining);
+  }
+
+  String _timerSoundId() => ref.read(settingsRepositoryProvider).timerSoundId;
+
+  Future<void> _dismissCompletion() async {
+    await _completionController.reverse();
+    setState(() => _showCompletion = false);
+    ref.read(timerProvider.notifier).dismissFinished();
   }
 
   @override
   Widget build(BuildContext context) {
     final timer = ref.watch(timerProvider);
     final notifier = ref.read(timerProvider.notifier);
-    final scheme = Theme.of(context).colorScheme;
 
-    // Listen for completion
     ref.listen(timerProvider, (prev, next) {
       if (next.isFinished && !(prev?.isFinished ?? false)) {
-        _showFinishedDialog();
+        HapticFeedback.heavyImpact();
+        _completedElapsed = next.elapsed;
+        setState(() => _showCompletion = true);
+        _completionController.forward(from: 0);
       }
     });
 
@@ -82,32 +122,85 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
             ),
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Column(
-            children: [
-              const SizedBox(height: 24),
-              _buildDial(context, timer),
-              const SizedBox(height: 40),
-              if (timer.isIdle) ...[
-                DurationPicker(
-                  selected: _selectedDuration,
-                  onChanged: (d) => setState(() => _selectedDuration = d),
-                ),
-                const SizedBox(height: 24),
-                IntervalPicker(
-                  selected: _selectedInterval,
-                  onChanged: (d) => setState(() => _selectedInterval = d),
-                ),
-                const SizedBox(height: 40),
-                _buildStartButton(context, notifier, scheme),
-              ],
-              if (timer.isRunning || timer.isPaused)
-                _buildActiveControls(context, timer, notifier, scheme),
-            ],
+      body: Stack(
+        children: [
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Column(
+                children: [
+                  const SizedBox(height: 24),
+                  _buildDial(context, timer),
+                  const SizedBox(height: 40),
+                  // Animated switch between idle pickers and active controls
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    switchInCurve: Curves.easeOut,
+                    switchOutCurve: Curves.easeIn,
+                    transitionBuilder: (child, animation) => FadeTransition(
+                      opacity: animation,
+                      child: SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0, 0.08),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      ),
+                    ),
+                    child: timer.isIdle
+                        ? _IdleControls(
+                            key: const ValueKey('idle'),
+                            selectedDuration: _selectedDuration,
+                            selectedInterval: _selectedInterval,
+                            onDurationChanged: (d) =>
+                                setState(() => _selectedDuration = d),
+                            onIntervalChanged: (d) =>
+                                setState(() => _selectedInterval = d),
+                            onStart: () {
+                              HapticFeedback.mediumImpact();
+                              notifier.start(
+                                target: _selectedDuration,
+                                interval: _selectedInterval,
+                                soundId: _timerSoundId(),
+                              );
+                            },
+                            selectedDurationLabel: _selectedDuration != null
+                                ? DurationFormatter.label(_selectedDuration!)
+                                : null,
+                          )
+                        : timer.isActive
+                            ? _ActiveControls(
+                                key: const ValueKey('active'),
+                                timer: timer,
+                                onStop: () async {
+                                  HapticFeedback.lightImpact();
+                                  await notifier.stop();
+                                },
+                                onTogglePause: () {
+                                  HapticFeedback.lightImpact();
+                                  if (timer.isRunning) {
+                                    notifier.pause();
+                                  } else {
+                                    notifier.resume();
+                                  }
+                                },
+                              )
+                            : const SizedBox.shrink(key: ValueKey('finished')),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
+          // Completion overlay
+          if (_showCompletion)
+            _CompletionOverlay(
+              overlayFade: _overlayFade,
+              cardScale: _cardScale,
+              checkScale: _checkScale,
+              elapsed: _completedElapsed,
+              onDone: _dismissCompletion,
+            ),
+        ],
       ),
     );
   }
@@ -116,26 +209,32 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
     final scheme = Theme.of(context).colorScheme;
     final isRunning = timer.isRunning;
 
+    final ringColor = timer.isPaused
+        ? Color.lerp(scheme.primary, scheme.secondary, 0.6)!
+        : scheme.primary;
+
     return Center(
       child: AnimatedBuilder(
         animation: _pulseAnimation,
         builder: (context, child) {
           final scale = isRunning ? _pulseAnimation.value : 1.0;
-          return Transform.scale(
-            scale: scale,
-            child: child,
-          );
+          return Transform.scale(scale: scale, child: child);
         },
-        child: TimerDial(
-          progress: timer.progress,
+        child: TweenAnimationBuilder<Color?>(
+          tween: ColorTween(end: ringColor),
+          duration: const Duration(milliseconds: 400),
+          builder: (context, color, child) => TimerDial(
+            progress: timer.progress,
+            progressColor: color ?? scheme.primary,
+            child: child!,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 _displayTime(timer),
-                style: AppTextStyles.timerDisplay(context).copyWith(
-                  color: scheme.onSurface,
-                ),
+                style: AppTextStyles.timerDisplay(context)
+                    .copyWith(color: scheme.onSurface),
               ),
               if (timer.isActive && timer.interval != null)
                 Text(
@@ -160,52 +259,84 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
       ),
     );
   }
+}
 
-  Widget _buildStartButton(
-    BuildContext context,
-    TimerNotifier notifier,
-    ColorScheme scheme,
-  ) {
-    return FilledButton.icon(
-      onPressed: () {
-        HapticFeedback.mediumImpact();
-        notifier.start(
-          target: _selectedDuration,
-          interval: _selectedInterval,
-          soundId: _timerSoundId(ref),
-        );
-      },
-      icon: const Icon(Icons.play_arrow_rounded),
-      label: Text(
-        _selectedDuration == null
-            ? 'Begin (open)'
-            : 'Begin ${DurationFormatter.label(_selectedDuration!)}',
-      ),
-      style: FilledButton.styleFrom(
-        minimumSize: const Size(200, 52),
-        textStyle: Theme.of(context).textTheme.titleMedium,
-      ),
+// ── Idle state: duration + interval pickers + start button ─────────────────
+
+class _IdleControls extends StatelessWidget {
+  const _IdleControls({
+    super.key,
+    required this.selectedDuration,
+    required this.selectedInterval,
+    required this.onDurationChanged,
+    required this.onIntervalChanged,
+    required this.onStart,
+    required this.selectedDurationLabel,
+  });
+
+  final Duration? selectedDuration;
+  final Duration? selectedInterval;
+  final ValueChanged<Duration?> onDurationChanged;
+  final ValueChanged<Duration?> onIntervalChanged;
+  final VoidCallback onStart;
+  final String? selectedDurationLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        DurationPicker(
+          selected: selectedDuration,
+          onChanged: onDurationChanged,
+        ),
+        const SizedBox(height: 24),
+        IntervalPicker(
+          selected: selectedInterval,
+          onChanged: onIntervalChanged,
+        ),
+        const SizedBox(height: 40),
+        FilledButton.icon(
+          onPressed: onStart,
+          icon: const Icon(Icons.play_arrow_rounded),
+          label: Text(
+            selectedDurationLabel != null
+                ? 'Begin $selectedDurationLabel'
+                : 'Begin (open)',
+          ),
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(200, 52),
+            textStyle: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
+        // bottom padding so the button isn't flush against the nav bar
+        SizedBox(height: MediaQuery.paddingOf(context).bottom + 16),
+      ],
     );
   }
+}
 
-  String _timerSoundId(WidgetRef ref) =>
-      ref.read(settingsRepositoryProvider).timerSoundId;
+// ── Active state: stop + pause/resume ──────────────────────────────────────
 
-  Widget _buildActiveControls(
-    BuildContext context,
-    TimerState timer,
-    TimerNotifier notifier,
-    ColorScheme scheme,
-  ) {
+class _ActiveControls extends StatelessWidget {
+  const _ActiveControls({
+    super.key,
+    required this.timer,
+    required this.onStop,
+    required this.onTogglePause,
+  });
+
+  final TimerState timer;
+  final VoidCallback onStop;
+  final VoidCallback onTogglePause;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Stop
         IconButton.outlined(
-          onPressed: () async {
-            HapticFeedback.lightImpact();
-            await notifier.stop();
-          },
+          onPressed: onStop,
           icon: const Icon(Icons.stop_rounded),
           iconSize: 28,
           style: IconButton.styleFrom(
@@ -214,45 +345,118 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
           ),
         ),
         const SizedBox(width: 24),
-        // Pause / Resume
         FilledButton(
-          onPressed: () {
-            HapticFeedback.lightImpact();
-            if (timer.isRunning) {
-              notifier.pause();
-            } else {
-              notifier.resume();
-            }
-          },
-          style: FilledButton.styleFrom(
-            minimumSize: const Size(72, 56),
-          ),
-          child: Icon(
-            timer.isRunning ? Icons.pause_rounded : Icons.play_arrow_rounded,
-            size: 28,
+          onPressed: onTogglePause,
+          style: FilledButton.styleFrom(minimumSize: const Size(72, 56)),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: Icon(
+              timer.isRunning ? Icons.pause_rounded : Icons.play_arrow_rounded,
+              size: 28,
+              key: ValueKey(timer.isRunning),
+            ),
           ),
         ),
       ],
     );
   }
+}
 
-  void _showFinishedDialog() {
-    final notifier = ref.read(timerProvider.notifier);
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: const Text('Session complete'),
-        content: const Text('Well done. Your session has been saved.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              notifier.dismissFinished();
-            },
-            child: const Text('Done'),
+// ── Session completion overlay ──────────────────────────────────────────────
+
+class _CompletionOverlay extends StatelessWidget {
+  const _CompletionOverlay({
+    required this.overlayFade,
+    required this.cardScale,
+    required this.checkScale,
+    required this.elapsed,
+    required this.onDone,
+  });
+
+  final Animation<double> overlayFade;
+  final Animation<double> cardScale;
+  final Animation<double> checkScale;
+  final Duration elapsed;
+  final VoidCallback onDone;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return FadeTransition(
+      opacity: overlayFade,
+      child: Container(
+        color: Colors.black54,
+        child: Center(
+          child: ScaleTransition(
+            scale: cardScale,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32, vertical: 40),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Animated check circle
+                      ScaleTransition(
+                        scale: checkScale,
+                        child: Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: scheme.primary.withAlpha(20),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.check_rounded,
+                            size: 44,
+                            color: scheme.primary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        'Session complete',
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        DurationFormatter.format(elapsed),
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  color: scheme.primary,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1,
+                                ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Well done.',
+                        style:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: scheme.onSurface.withAlpha(150),
+                                ),
+                      ),
+                      const SizedBox(height: 28),
+                      FilledButton(
+                        onPressed: onDone,
+                        style: FilledButton.styleFrom(
+                          minimumSize: const Size(160, 48),
+                        ),
+                        child: const Text('Done'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

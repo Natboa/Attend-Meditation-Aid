@@ -7,11 +7,16 @@ class TimerDial extends StatelessWidget {
     required this.progress,
     required this.child,
     this.size = 260,
+    this.progressColor,
   });
 
   final double progress; // 0.0 – 1.0
   final Widget child;
   final double size;
+
+  /// Overrides the default primary color for the progress arc.
+  /// Used for animated color transitions (e.g. paused state).
+  final Color? progressColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class TimerDial extends StatelessWidget {
         painter: _DialPainter(
           progress: progress,
           trackColor: scheme.surfaceContainerHighest,
-          progressColor: scheme.primary,
+          progressColor: progressColor ?? scheme.primary,
           strokeWidth: 8,
         ),
         child: Center(child: child),
@@ -62,10 +67,8 @@ class _DialPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    // Full circle track
     canvas.drawCircle(center, radius, trackPaint);
 
-    // Progress arc — starts at top (-π/2), sweeps clockwise
     if (progress > 0) {
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
