@@ -53,10 +53,7 @@ NotificationConfig _configFromJson(Map<String, dynamic> json) =>
 
 /// Initialises WorkManager. Call once from [main].
 Future<void> initWorkManager() async {
-  await Workmanager().initialize(
-    backgroundTaskDispatcher,
-    isInDebugMode: false,
-  );
+  await Workmanager().initialize(backgroundTaskDispatcher);
 }
 
 /// Enqueues the daily bell scheduler task, optionally with an initial [delay].

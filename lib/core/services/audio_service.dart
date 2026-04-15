@@ -29,6 +29,16 @@ class AudioService {
     await _playAsset(sound.assetPath);
   }
 
+  /// Plays the bell and waits until playback finishes before returning.
+  Future<void> playBellAndAwait(String soundId) async {
+    final sound = SoundOption.findById(soundId);
+    await _playAsset(sound.assetPath);
+    // Wait for the player to reach completed state
+    await _player?.playerStateStream.firstWhere(
+      (s) => s.processingState == ProcessingState.completed,
+    );
+  }
+
   Future<void> previewSound(String soundId) async {
     _previewTimer?.cancel();
     final sound = SoundOption.findById(soundId);

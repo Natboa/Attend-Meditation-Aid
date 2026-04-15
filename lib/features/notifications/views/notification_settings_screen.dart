@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/models/notification_config.dart';
 import '../../../core/models/sound_option.dart';
 import '../../../core/services/audio_service.dart';
+import '../../../core/services/notification_service.dart';
 import '../../../core/services/permission_service.dart';
+import '../../../core/services/scheduler_service.dart';
 import '../providers/notification_config_provider.dart';
 import '../widgets/day_selector.dart';
 import '../widgets/frequency_picker.dart';
@@ -49,12 +51,39 @@ class NotificationSettingsScreen extends ConsumerWidget {
                     if (v) {
                       final granted = await PermissionService.instance
                           .requestNotificationPermission();
-                      if (!granted) return;
+                      if (!granted) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'Notification permission is required for bells.'),
+                            ),
+                          );
+                        }
+                        return;
+                      }
                       final hasExact = await PermissionService.instance
                           .hasExactAlarmPermission();
                       if (!hasExact && context.mounted) {
+                        // Opens Alarms & Reminders settings. Control returns
+                        // immediately when the dialog is dismissed, NOT when
+                        // the user has granted the permission inside Settings.
                         await PermissionService.instance
                             .showExactAlarmDialog(context);
+                        // Re-check: if still not granted, bail out.
+                        final nowHasExact = await PermissionService.instance
+                            .hasExactAlarmPermission();
+                        if (!nowHasExact) {
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Please grant "Alarms & reminders" in Settings, then try again.'),
+                              ),
+                            );
+                          }
+                          return;
+                        }
                       }
                       final batteryIgnored = await PermissionService.instance
                           .isBatteryOptimizationIgnored();
@@ -63,7 +92,19 @@ class NotificationSettingsScreen extends ConsumerWidget {
                             .requestBatteryOptimizationExemption();
                       }
                     }
-                    await notifier.setEnabled(v);
+                    try {
+                      await notifier.setEnabled(v);
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'Could not schedule bells: $e\n'
+                                'Check "Alarms & reminders" permission in Settings.'),
+                          ),
+                        );
+                      }
+                    }
                   },
                 ),
               ],
@@ -132,6 +173,8 @@ class NotificationSettingsScreen extends ConsumerWidget {
             const SizedBox(height: 16),
 
             _BellScheduleSummary(config: config),
+            const SizedBox(height: 16),
+            _TestBellSection(soundId: config.bellSoundId),
           ],
 
           const SizedBox(height: 24),
@@ -185,6 +228,99 @@ class NotificationSettingsScreen extends ConsumerWidget {
           ],
 
           const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Test bell ─────────────────────────────────────────────────────────────────
+
+class _TestBellSection extends StatefulWidget {
+  const _TestBellSection({required this.soundId});
+  final String soundId;
+
+  @override
+  State<_TestBellSection> createState() => _TestBellSectionState();
+}
+
+class _TestBellSectionState extends State<_TestBellSection> {
+  bool _scheduledPending = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return _Section(
+      label: 'Test bells',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Verify that your device can receive bells.',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: scheme.onSurface.withAlpha(140),
+                ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () async {
+                    try {
+                      await NotificationService.instance
+                          .showMindfulnessBell(widget.soundId);
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Immediate bell failed: $e')),
+                        );
+                      }
+                    }
+                  },
+                  child: const Text('Ring now'),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: FilledButton.tonal(
+                  onPressed: _scheduledPending
+                      ? null
+                      : () async {
+                          setState(() => _scheduledPending = true);
+                          try {
+                            await SchedulerService.instance.scheduleTestBell(
+                              soundId: widget.soundId,
+                              secondsFromNow: 10,
+                            );
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Test bell scheduled — rings in 10 s'),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content:
+                                        Text('Scheduled bell failed: $e')),
+                              );
+                            }
+                          } finally {
+                            await Future.delayed(const Duration(seconds: 12));
+                            if (mounted) setState(() => _scheduledPending = false);
+                          }
+                        },
+                  child: _scheduledPending
+                      ? const Text('Waiting…')
+                      : const Text('Ring in 10 s'),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -98,26 +98,6 @@ class GathaDetailScreen extends ConsumerWidget {
                           ),
                     ),
                   ],
-                  const SizedBox(height: 32),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 6,
-                    children: gatha.tags
-                        .map((tag) => Chip(
-                              label: Text(tag,
-                                  style: const TextStyle(fontSize: 12)),
-                              backgroundColor:
-                                  scheme.primary.withAlpha(20),
-                              side: BorderSide(
-                                  color: scheme.primary.withAlpha(60)),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              visualDensity: VisualDensity.compact,
-                            ))
-                        .toList(),
-                  ),
                 ],
               ),
             ),

@@ -28,7 +28,17 @@ class NotificationConfigNotifier extends Notifier<NotificationConfig> {
     );
     await _persist();
     if (value) {
-      await triggerDailyScheduler();
+      try {
+        // Schedule today's remaining bells immediately — don't wait for WorkManager.
+        await SchedulerService.instance.rescheduleBells(state);
+        // Enqueue the daily WorkManager task so tomorrow's bells are refreshed.
+        await triggerDailyScheduler();
+      } catch (e) {
+        // Revert: scheduling failed (e.g. SCHEDULE_EXACT_ALARM not granted).
+        state = _copyWith(enabled: false);
+        await _persist();
+        rethrow;
+      }
     } else {
       await SchedulerService.instance.cancelAllBells();
       await cancelDailyScheduler();

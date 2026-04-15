@@ -11,7 +11,7 @@
 <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
-        android:label="attend"
+        android:label="Attend"
         android:name=".AttendApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -45,6 +45,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <!-- BellAlarmReceiver: handles AlarmManager alarms for mindfulness bells.
+             Not exported — only the app's own AlarmManager can deliver to it. -->
+        <receiver
+            android:name=".BellAlarmReceiver"
+            android:exported="false" />
 
         <!-- Required when using Configuration.Provider for on-demand WorkManager init -->
         <provider

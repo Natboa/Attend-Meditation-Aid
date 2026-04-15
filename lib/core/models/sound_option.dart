@@ -25,10 +25,10 @@ class SoundOption {
       androidRawName: 'meditation_bowl',
     ),
     SoundOption(
-      id: 'zen_bell',
-      displayName: 'Zen Bell',
-      assetPath: 'assets/audio/zen_notification.mp3',
-      androidRawName: 'zen_notification',
+      id: 'temple_bowl',
+      displayName: 'Temple Bowl',
+      assetPath: 'assets/audio/temple_bowl.mp3',
+      androidRawName: 'temple_bowl',
     ),
     SoundOption(
       id: 'singing_bowl',
@@ -41,6 +41,60 @@ class SoundOption {
       displayName: 'Gentle Gong',
       assetPath: 'assets/audio/gentle_gong.mp3',
       androidRawName: 'gentle_gong',
+    ),
+    SoundOption(
+      id: 'zen_bell',
+      displayName: 'Zen Bell',
+      assetPath: 'assets/audio/zen_notification.mp3',
+      androidRawName: 'zen_notification',
+    ),
+    SoundOption(
+      id: 'zen_chime',
+      displayName: 'Zen Chime',
+      assetPath: 'assets/audio/zen.mp3',
+      androidRawName: 'zen',
+    ),
+    SoundOption(
+      id: 'crystal_gong',
+      displayName: 'Crystal Gong',
+      assetPath: 'assets/audio/bmw_gong.mp3',
+      androidRawName: 'bmw_gong',
+    ),
+    SoundOption(
+      id: 'chi_gong',
+      displayName: 'Chi Gong',
+      assetPath: 'assets/audio/chigong.mp3',
+      androidRawName: 'chigong',
+    ),
+    SoundOption(
+      id: 'chi_gong_deep',
+      displayName: 'Deep Chi',
+      assetPath: 'assets/audio/chigong(1).mp3',
+      androidRawName: 'chigong_deep',
+    ),
+    SoundOption(
+      id: 'nepal_echo',
+      displayName: 'Nepal Echo',
+      assetPath: 'assets/audio/nepal_gong_mit_echo.mp3',
+      androidRawName: 'nepal_gong_mit_echo',
+    ),
+    SoundOption(
+      id: 'bamboo_flute',
+      displayName: 'Bamboo Flute',
+      assetPath: 'assets/audio/flute.mp3',
+      androidRawName: 'flute',
+    ),
+    SoundOption(
+      id: 'deep_meditation',
+      displayName: 'Deep Meditation',
+      assetPath: 'assets/audio/meditation.mp3',
+      androidRawName: 'meditation',
+    ),
+    SoundOption(
+      id: 'forest_breath',
+      displayName: 'Forest Breath',
+      assetPath: 'assets/audio/faahhhhh.mp3',
+      androidRawName: 'forest_breath',
     ),
   ];
 

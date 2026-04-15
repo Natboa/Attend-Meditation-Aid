@@ -20,8 +20,11 @@ class TimerScreen extends ConsumerStatefulWidget {
 
 class _TimerScreenState extends ConsumerState<TimerScreen>
     with TickerProviderStateMixin {
-  Duration? _selectedDuration = const Duration(minutes: 15);
+  // Default to 5 min; user can pick 5, 10, custom, or ∞
+  Duration? _selectedDuration = const Duration(minutes: 5);
   Duration? _selectedInterval;
+  // Single user-added custom duration (replaces any previous custom)
+  Duration? _customDuration;
 
   // Captured when session finishes, shown on completion overlay
   Duration _completedElapsed = Duration.zero;
@@ -82,13 +85,23 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
   String _displayTime(TimerState s) {
     if (s.isIdle || s.target == null) {
       return DurationFormatter.format(
-        _selectedDuration ?? const Duration(minutes: 15),
+        _selectedDuration ?? const Duration(minutes: 5),
       );
     }
     return DurationFormatter.format(s.remaining);
   }
 
   String _timerSoundId() => ref.read(settingsRepositoryProvider).timerSoundId;
+
+  Future<void> _openCustomDurationDialog() async {
+    final result = await showCustomDurationDialog(context);
+    if (result != null) {
+      setState(() {
+        _customDuration = result;
+        _selectedDuration = result;
+      });
+    }
+  }
 
   Future<void> _dismissCompletion() async {
     await _completionController.reverse();
@@ -125,13 +138,16 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
       body: Stack(
         children: [
           SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  const SizedBox(height: 24),
-                  _buildDial(context, timer),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    flex: 5,
+                    child: Center(child: _buildDial(context, timer)),
+                  ),
+                  const SizedBox(height: 16),
                   // Animated switch between idle pickers and active controls
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
@@ -152,10 +168,12 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                             key: const ValueKey('idle'),
                             selectedDuration: _selectedDuration,
                             selectedInterval: _selectedInterval,
+                            customDuration: _customDuration,
                             onDurationChanged: (d) =>
                                 setState(() => _selectedDuration = d),
                             onIntervalChanged: (d) =>
                                 setState(() => _selectedInterval = d),
+                            onAddCustom: _openCustomDurationDialog,
                             onStart: () {
                               HapticFeedback.mediumImpact();
                               notifier.start(
@@ -187,6 +205,7 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                               )
                             : const SizedBox.shrink(key: ValueKey('finished')),
                   ),
+                  SizedBox(height: MediaQuery.paddingOf(context).bottom + 8),
                 ],
               ),
             ),
@@ -213,6 +232,22 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
         ? Color.lerp(scheme.primary, scheme.secondary, 0.6)!
         : scheme.primary;
 
+    // When idle, tapping the time display opens the custom duration dialog
+    final timeWidget = timer.isIdle
+        ? GestureDetector(
+            onTap: _openCustomDurationDialog,
+            child: Text(
+              _displayTime(timer),
+              style: AppTextStyles.timerDisplay(context)
+                  .copyWith(color: scheme.onSurface),
+            ),
+          )
+        : Text(
+            _displayTime(timer),
+            style: AppTextStyles.timerDisplay(context)
+                .copyWith(color: scheme.onSurface),
+          );
+
     return Center(
       child: AnimatedBuilder(
         animation: _pulseAnimation,
@@ -231,11 +266,7 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                _displayTime(timer),
-                style: AppTextStyles.timerDisplay(context)
-                    .copyWith(color: scheme.onSurface),
-              ),
+              timeWidget,
               if (timer.isActive && timer.interval != null)
                 Text(
                   'every ${DurationFormatter.label(timer.interval!)}',
@@ -268,16 +299,20 @@ class _IdleControls extends StatelessWidget {
     super.key,
     required this.selectedDuration,
     required this.selectedInterval,
+    required this.customDuration,
     required this.onDurationChanged,
     required this.onIntervalChanged,
+    required this.onAddCustom,
     required this.onStart,
     required this.selectedDurationLabel,
   });
 
   final Duration? selectedDuration;
   final Duration? selectedInterval;
+  final Duration? customDuration;
   final ValueChanged<Duration?> onDurationChanged;
   final ValueChanged<Duration?> onIntervalChanged;
+  final VoidCallback onAddCustom;
   final VoidCallback onStart;
   final String? selectedDurationLabel;
 
@@ -288,13 +323,15 @@ class _IdleControls extends StatelessWidget {
         DurationPicker(
           selected: selectedDuration,
           onChanged: onDurationChanged,
+          customDuration: customDuration,
+          onAddCustom: onAddCustom,
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 20),
         IntervalPicker(
           selected: selectedInterval,
           onChanged: onIntervalChanged,
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 32),
         FilledButton.icon(
           onPressed: onStart,
           icon: const Icon(Icons.play_arrow_rounded),
@@ -308,8 +345,6 @@ class _IdleControls extends StatelessWidget {
             textStyle: Theme.of(context).textTheme.titleMedium,
           ),
         ),
-        // bottom padding so the button isn't flush against the nav bar
-        SizedBox(height: MediaQuery.paddingOf(context).bottom + 16),
       ],
     );
   }
@@ -399,7 +434,6 @@ class _CompletionOverlay extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Animated check circle
                       ScaleTransition(
                         scale: checkScale,
                         child: Container(

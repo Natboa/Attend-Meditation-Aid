@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_text_styles.dart';
-import '../../../core/providers/repositories.dart';
-import '../../../core/utils/duration_formatter.dart';
 import '../../gathas/providers/gatha_providers.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -11,10 +9,6 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsRepositoryProvider);
-    final lastDuration = settings.lastDurationSeconds != null
-        ? Duration(seconds: settings.lastDurationSeconds!)
-        : null;
     final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -35,12 +29,6 @@ class HomeScreen extends ConsumerWidget {
               _GreetingCard(scheme: scheme),
               const SizedBox(height: 20),
               const _PoemOfDayCard(),
-              const SizedBox(height: 24),
-              _QuickStartButton(
-                lastDuration: lastDuration,
-                scheme: scheme,
-                onTap: () => context.go('/timer'),
-              ),
             ],
           ),
         ),
@@ -162,39 +150,6 @@ class _PoemOfDayCard extends ConsumerWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _QuickStartButton extends StatelessWidget {
-  const _QuickStartButton({
-    required this.lastDuration,
-    required this.scheme,
-    required this.onTap,
-  });
-
-  final Duration? lastDuration;
-  final ColorScheme scheme;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
-        onPressed: onTap,
-        icon: const Icon(Icons.timer_outlined),
-        label: Text(
-          lastDuration != null
-              ? 'Quick start (${DurationFormatter.label(lastDuration!)})'
-              : 'Start a session',
-        ),
-        style: OutlinedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          textStyle: Theme.of(context).textTheme.titleMedium,
-          side: BorderSide(color: scheme.primary.withAlpha(100)),
-        ),
-      ),
     );
   }
 }

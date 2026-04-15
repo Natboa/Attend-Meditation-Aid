@@ -38,7 +38,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     final hasExact =
         await PermissionService.instance.hasExactAlarmPermission();
     if (!hasExact && mounted) {
+      // Opens Alarms & Reminders in Settings. Await the dialog dismissal, then
+      // re-check — the user grants permission inside Settings, not in our dialog.
       await PermissionService.instance.showExactAlarmDialog(context);
+      // No need to block the onboarding flow here; the user can still finish
+      // setup. The toggle in NotificationSettingsScreen re-checks before enabling.
     }
 
     final batteryIgnored =

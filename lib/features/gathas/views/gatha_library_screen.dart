@@ -20,7 +20,6 @@ class GathaLibraryScreen extends ConsumerWidget {
       body: Column(
         children: [
           _SearchBar(),
-          _TagFilter(),
           Expanded(child: _GathaList()),
         ],
       ),
@@ -71,56 +70,6 @@ class _SearchBar extends ConsumerWidget {
         ),
         onChanged: (v) =>
             ref.read(gathaSearchQueryProvider.notifier).state = v,
-      ),
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-
-class _TagFilter extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final tagsAsync = ref.watch(allTagsProvider);
-    final selectedTag = ref.watch(gathaSelectedTagProvider);
-    final scheme = Theme.of(context).colorScheme;
-
-    return tagsAsync.when(
-      loading: () => const SizedBox.shrink(),
-      error: (e, _) => const SizedBox.shrink(),
-      data: (tags) => SizedBox(
-        height: 40,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          itemCount: tags.length,
-          itemBuilder: (context, i) {
-            final tag = tags[i];
-            final selected = tag == selectedTag;
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: FilterChip(
-                label: Text(tag,
-                    style: TextStyle(fontSize: 12)),
-                selected: selected,
-                onSelected: (_) => ref
-                    .read(gathaSelectedTagProvider.notifier)
-                    .state = selected ? null : tag,
-                selectedColor: scheme.primary.withAlpha(30),
-                checkmarkColor: scheme.primary,
-                side: BorderSide(
-                  color: selected
-                      ? scheme.primary
-                      : scheme.outline.withAlpha(100),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                visualDensity: VisualDensity.compact,
-              ),
-            );
-          },
-        ),
       ),
     );
   }

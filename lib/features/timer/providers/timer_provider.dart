@@ -2,9 +2,12 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import '../../../core/models/sound_option.dart';
 import '../../../core/models/timer_session.dart';
 import '../../../core/providers/repositories.dart';
 import '../../../core/services/audio_service.dart';
+import '../../../core/services/notification_service.dart';
+import '../../../core/services/timer_notification_controller.dart';
 import 'timer_state.dart';
 
 class TimerNotifier extends Notifier<TimerState> {
@@ -42,9 +45,30 @@ class TimerNotifier extends Notifier<TimerState> {
     }
 
     await WakelockPlus.enable();
-    await AudioService.instance.playBell(soundId);
+    // Play the opening bell and wait for it to finish before the countdown starts
+    await AudioService.instance.playBellAndAwait(soundId);
+
+    // Update startedAt to after the bell, so elapsed time is accurate
+    state = state.copyWith(startedAt: DateTime.now());
+
+    // Register notification action callbacks
+    _registerNotificationCallbacks();
+
+    // Show the timer notification
+    final soundName = SoundOption.findById(soundId).displayName;
+    await NotificationService.instance.showTimerNotification(
+      remaining: target ?? const Duration(hours: 9),
+      soundName: soundName,
+    );
 
     _ticker = Timer.periodic(_tickInterval, _onTick);
+  }
+
+  void _registerNotificationCallbacks() {
+    final ctrl = TimerNotificationController.instance;
+    ctrl.onPause = pause;
+    ctrl.onResume = resume;
+    ctrl.onStop = () => stop();
   }
 
   void _onTick(Timer _) {
@@ -81,12 +105,20 @@ class TimerNotifier extends Notifier<TimerState> {
     if (!state.isRunning) return;
     _ticker?.cancel();
     state = state.copyWith(status: TimerStatus.paused);
+    final remaining = state.target != null
+        ? state.target! - state.elapsed
+        : const Duration(hours: 9);
+    NotificationService.instance.pauseTimerNotification(remaining);
   }
 
   void resume() {
     if (!state.isPaused) return;
     _ticker = Timer.periodic(_tickInterval, _onTick);
     state = state.copyWith(status: TimerStatus.running);
+    final remaining = state.target != null
+        ? state.target! - state.elapsed
+        : const Duration(hours: 9);
+    NotificationService.instance.resumeTimerNotification(remaining);
   }
 
   Future<void> stop() async {
@@ -94,6 +126,8 @@ class TimerNotifier extends Notifier<TimerState> {
     _ticker?.cancel();
     await _saveSession(state.elapsed, completed: false);
     await WakelockPlus.disable();
+    await NotificationService.instance.cancelTimerNotification();
+    TimerNotificationController.instance.clear();
     state = const TimerState();
   }
 
@@ -106,6 +140,8 @@ class TimerNotifier extends Notifier<TimerState> {
     await AudioService.instance.playBell(state.soundId);
     await _saveSession(elapsed, completed: completed);
     await WakelockPlus.disable();
+    await NotificationService.instance.cancelTimerNotification();
+    TimerNotificationController.instance.clear();
   }
 
   Future<void> _saveSession(Duration elapsed, {required bool completed}) async {
@@ -125,7 +161,6 @@ class TimerNotifier extends Notifier<TimerState> {
   void dismissFinished() {
     if (state.isFinished) state = const TimerState();
   }
-
 }
 
 final timerProvider = NotifierProvider<TimerNotifier, TimerState>(
