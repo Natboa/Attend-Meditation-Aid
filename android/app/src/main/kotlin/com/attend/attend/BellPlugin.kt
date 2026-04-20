@@ -47,6 +47,19 @@ class BellPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
+            // Full native reschedule: reads config from SharedPrefs, schedules 30 days
+            // of bells, and arms the 25-day sentinel. Runs on a background thread so
+            // the main thread is not blocked by ~90-300 AlarmManager API calls.
+            "triggerReschedule" -> {
+                Thread { BellSchedulerReceiver.reschedule(context) }.start()
+                result.success(null)
+            }
+            // Cancel all bell alarms and the sentinel. Called when bells are disabled.
+            "cancelScheduler" -> {
+                BellSchedulerReceiver.cancelAll(context)
+                result.success(null)
+            }
+            // Individual alarm scheduling — used only for the test bell (id 998).
             "scheduleBell" -> {
                 val id = call.argument<Int>("id")
                     ?: return result.error("ARGS", "id required", null)

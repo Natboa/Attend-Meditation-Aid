@@ -20,11 +20,18 @@ class TimerScreen extends ConsumerStatefulWidget {
 
 class _TimerScreenState extends ConsumerState<TimerScreen>
     with TickerProviderStateMixin {
-  // Default to 5 min; user can pick 5, 10, custom, or ∞
+  // Default to 5 min; user can pick from the chip list, add custom, or ∞
   Duration? _selectedDuration = const Duration(minutes: 5);
   Duration? _selectedInterval;
-  // Single user-added custom duration (replaces any previous custom)
-  Duration? _customDuration;
+  List<Duration> _durationChips = const [
+    Duration(minutes: 5),
+    Duration(minutes: 10),
+  ];
+  List<Duration> _intervalChips = const [
+    Duration(minutes: 5),
+    Duration(minutes: 10),
+    Duration(minutes: 15),
+  ];
 
   // Captured when session finishes, shown on completion overlay
   Duration _completedElapsed = Duration.zero;
@@ -97,10 +104,43 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
     final result = await showCustomDurationDialog(context);
     if (result != null) {
       setState(() {
-        _customDuration = result;
+        if (!_durationChips.contains(result)) {
+          _durationChips = [..._durationChips, result];
+        }
         _selectedDuration = result;
       });
     }
+  }
+
+  Future<void> _openCustomIntervalDialog() async {
+    final result = await showCustomIntervalDialog(context);
+    if (result != null) {
+      setState(() {
+        if (!_intervalChips.contains(result)) {
+          _intervalChips = [..._intervalChips, result];
+        }
+        _selectedInterval = result;
+      });
+    }
+  }
+
+  void _removeDuration(Duration d) {
+    setState(() {
+      _durationChips = _durationChips.where((c) => c != d).toList();
+      if (_selectedDuration == d) {
+        _selectedDuration =
+            _durationChips.isNotEmpty ? _durationChips.first : null;
+      }
+    });
+  }
+
+  void _removeInterval(Duration d) {
+    setState(() {
+      _intervalChips = _intervalChips.where((c) => c != d).toList();
+      if (_selectedInterval == d) {
+        _selectedInterval = null;
+      }
+    });
   }
 
   Future<void> _dismissCompletion() async {
@@ -168,12 +208,16 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                             key: const ValueKey('idle'),
                             selectedDuration: _selectedDuration,
                             selectedInterval: _selectedInterval,
-                            customDuration: _customDuration,
+                            durationChips: _durationChips,
+                            intervalChips: _intervalChips,
                             onDurationChanged: (d) =>
                                 setState(() => _selectedDuration = d),
                             onIntervalChanged: (d) =>
                                 setState(() => _selectedInterval = d),
-                            onAddCustom: _openCustomDurationDialog,
+                            onAddDuration: _openCustomDurationDialog,
+                            onAddInterval: _openCustomIntervalDialog,
+                            onRemoveDuration: _removeDuration,
+                            onRemoveInterval: _removeInterval,
                             onStart: () {
                               HapticFeedback.mediumImpact();
                               notifier.start(
@@ -299,20 +343,28 @@ class _IdleControls extends StatelessWidget {
     super.key,
     required this.selectedDuration,
     required this.selectedInterval,
-    required this.customDuration,
+    required this.durationChips,
+    required this.intervalChips,
     required this.onDurationChanged,
     required this.onIntervalChanged,
-    required this.onAddCustom,
+    required this.onAddDuration,
+    required this.onAddInterval,
+    required this.onRemoveDuration,
+    required this.onRemoveInterval,
     required this.onStart,
     required this.selectedDurationLabel,
   });
 
   final Duration? selectedDuration;
   final Duration? selectedInterval;
-  final Duration? customDuration;
+  final List<Duration> durationChips;
+  final List<Duration> intervalChips;
   final ValueChanged<Duration?> onDurationChanged;
   final ValueChanged<Duration?> onIntervalChanged;
-  final VoidCallback onAddCustom;
+  final VoidCallback onAddDuration;
+  final VoidCallback onAddInterval;
+  final ValueChanged<Duration> onRemoveDuration;
+  final ValueChanged<Duration> onRemoveInterval;
   final VoidCallback onStart;
   final String? selectedDurationLabel;
 
@@ -323,13 +375,17 @@ class _IdleControls extends StatelessWidget {
         DurationPicker(
           selected: selectedDuration,
           onChanged: onDurationChanged,
-          customDuration: customDuration,
-          onAddCustom: onAddCustom,
+          durations: durationChips,
+          onAdd: onAddDuration,
+          onRemove: onRemoveDuration,
         ),
         const SizedBox(height: 20),
         IntervalPicker(
           selected: selectedInterval,
           onChanged: onIntervalChanged,
+          intervals: intervalChips,
+          onAdd: onAddInterval,
+          onRemove: onRemoveInterval,
         ),
         const SizedBox(height: 32),
         FilledButton.icon(

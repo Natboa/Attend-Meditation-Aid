@@ -6,21 +6,22 @@ class DurationPicker extends StatelessWidget {
     super.key,
     required this.selected,
     required this.onChanged,
-    this.customDuration,
-    required this.onAddCustom,
+    required this.durations,
+    required this.onAdd,
+    required this.onRemove,
   });
 
   final Duration? selected;
   final ValueChanged<Duration?> onChanged;
-  /// A single user-added custom duration (managed by the parent).
-  final Duration? customDuration;
-  /// Called when the user taps "+". Parent should show the dialog and update [customDuration].
-  final VoidCallback onAddCustom;
 
-  static const _defaults = [
-    Duration(minutes: 5),
-    Duration(minutes: 10),
-  ];
+  /// All removable duration chips managed by the parent.
+  final List<Duration> durations;
+
+  /// Called when the user taps "+". Parent shows dialog and appends to [durations].
+  final VoidCallback onAdd;
+
+  /// Called when the user taps × on a chip. Parent removes it from [durations].
+  final ValueChanged<Duration> onRemove;
 
   String _label(Duration d) {
     final m = d.inMinutes;
@@ -31,12 +32,6 @@ class DurationPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-
-    final chips = <Duration?>[..._defaults];
-    if (customDuration != null && !_defaults.contains(customDuration)) {
-      chips.add(customDuration);
-    }
-    chips.add(null); // ∞
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,17 +49,24 @@ class DurationPicker extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final d in chips)
+            for (final d in durations)
               _Chip(
-                label: d != null ? _label(d) : '∞',
+                label: _label(d),
                 selected: selected == d,
                 onTap: () => onChanged(d),
+                onRemove: () => onRemove(d),
                 scheme: scheme,
               ),
             _Chip(
+              label: '∞',
+              selected: selected == null,
+              onTap: () => onChanged(null),
+              scheme: scheme,
+            ),
+            _Chip(
               label: '+',
               selected: false,
-              onTap: onAddCustom,
+              onTap: onAdd,
               scheme: scheme,
             ),
           ],
@@ -82,12 +84,14 @@ class _Chip extends StatelessWidget {
     required this.selected,
     required this.onTap,
     required this.scheme,
+    this.onRemove,
   });
 
   final String label;
   final bool selected;
   final VoidCallback onTap;
   final ColorScheme scheme;
+  final VoidCallback? onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -95,17 +99,36 @@ class _Chip extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.fromLTRB(16, 8, onRemove != null ? 8 : 16, 8),
         decoration: BoxDecoration(
           color: selected ? scheme.primary : scheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: selected ? scheme.onPrimary : scheme.onSurface,
-                fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: selected ? scheme.onPrimary : scheme.onSurface,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                  ),
+            ),
+            if (onRemove != null) ...[
+              const SizedBox(width: 4),
+              GestureDetector(
+                onTap: onRemove,
+                behavior: HitTestBehavior.opaque,
+                child: Icon(
+                  Icons.close,
+                  size: 14,
+                  color: selected
+                      ? scheme.onPrimary.withAlpha(180)
+                      : scheme.onSurface.withAlpha(120),
+                ),
               ),
+            ],
+          ],
         ),
       ),
     );

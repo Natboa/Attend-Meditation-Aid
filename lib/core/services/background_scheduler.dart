@@ -10,7 +10,8 @@ import '../services/scheduler_service.dart';
 const _dailyTaskName = 'attend_daily_bell_scheduler';
 const _dailyTaskTag = 'attend_bells';
 
-/// Called by WorkManager in an isolate on Android.
+/// Called by WorkManager in an isolate. Only used to refresh daily gatha content.
+/// Bell scheduling is handled natively by BellSchedulerReceiver (no Flutter needed).
 @pragma('vm:entry-point')
 void backgroundTaskDispatcher() {
   Workmanager().executeTask((taskName, inputData) async {
@@ -26,14 +27,11 @@ void backgroundTaskDispatcher() {
     if (json == null) return Future.value(true);
 
     final config = _configFromJson(jsonDecode(json) as Map<String, dynamic>);
-    if (config.enabled) {
-      await SchedulerService.instance.rescheduleBells(config);
-    }
     if (config.dailyGathaEnabled) {
       await SchedulerService.instance.scheduleDailyGatha(config);
     }
 
-    // Re-enqueue for tomorrow
+    // Re-enqueue for tomorrow.
     await _enqueueDailyTask(delay: const Duration(hours: 24));
     return Future.value(true);
   });
@@ -51,12 +49,10 @@ NotificationConfig _configFromJson(Map<String, dynamic> json) =>
       dailyGathaHour: json['dailyGathaHour'] as int,
     );
 
-/// Initialises WorkManager. Call once from [main].
 Future<void> initWorkManager() async {
   await Workmanager().initialize(backgroundTaskDispatcher);
 }
 
-/// Enqueues the daily bell scheduler task, optionally with an initial [delay].
 Future<void> _enqueueDailyTask({Duration delay = Duration.zero}) async {
   await Workmanager().registerOneOffTask(
     _dailyTaskName,
@@ -68,9 +64,7 @@ Future<void> _enqueueDailyTask({Duration delay = Duration.zero}) async {
   );
 }
 
-/// Public entry point — call when the user changes notification config.
 Future<void> triggerDailyScheduler() => _enqueueDailyTask();
 
-/// Cancel all scheduled work.
 Future<void> cancelDailyScheduler() =>
     Workmanager().cancelByTag(_dailyTaskTag);

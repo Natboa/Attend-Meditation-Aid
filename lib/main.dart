@@ -7,9 +7,11 @@ import 'app.dart';
 import 'core/models/timer_session.dart';
 import 'core/providers/repositories.dart';
 import 'core/repositories/session_repository.dart';
+import 'core/repositories/notification_config_repository.dart';
 import 'core/services/audio_service.dart';
 import 'core/services/background_scheduler.dart';
 import 'core/services/notification_service.dart';
+import 'core/services/scheduler_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +35,13 @@ Future<void> main() async {
 
   // WorkManager
   await initWorkManager();
+
+  // Self-heal: reschedule bells on every cold start so a missed WorkManager
+  // firing (Samsung/Xiaomi kill aggressive OEMs) doesn't silence bells permanently.
+  final config = NotificationConfigRepository(prefs).load();
+  if (config.enabled) {
+    await SchedulerService.instance.rescheduleBells(config);
+  }
 
   runApp(
     ProviderScope(

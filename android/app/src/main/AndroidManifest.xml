@@ -46,11 +46,22 @@
             </intent-filter>
         </receiver>
 
-        <!-- BellAlarmReceiver: handles AlarmManager alarms for mindfulness bells.
-             Not exported — only the app's own AlarmManager can deliver to it. -->
+        <!-- BellAlarmReceiver: fires each individual mindfulness bell alarm. -->
         <receiver
             android:name=".BellAlarmReceiver"
             android:exported="false" />
+
+        <!-- BellSchedulerReceiver: self-sustaining native scheduler.
+             Fires every 25 days via AlarmManager to extend the bell horizon
+             another 30 days — no app open or WorkManager needed.
+             Exported so AlarmManager (a system process) can deliver to it. -->
+        <receiver
+            android:name=".BellSchedulerReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.attend.attend.ACTION_RESCHEDULE_BELLS" />
+            </intent-filter>
+        </receiver>
 
         <!-- Required when using Configuration.Provider for on-demand WorkManager init -->
         <provider

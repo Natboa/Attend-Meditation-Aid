@@ -25,12 +25,6 @@ class SoundOption {
       androidRawName: 'meditation_bowl',
     ),
     SoundOption(
-      id: 'temple_bowl',
-      displayName: 'Temple Bowl',
-      assetPath: 'assets/audio/temple_bowl.mp3',
-      androidRawName: 'temple_bowl',
-    ),
-    SoundOption(
       id: 'singing_bowl',
       displayName: 'Singing Bowl',
       assetPath: 'assets/audio/cuenco_zen.mp3',
@@ -41,12 +35,6 @@ class SoundOption {
       displayName: 'Gentle Gong',
       assetPath: 'assets/audio/gentle_gong.mp3',
       androidRawName: 'gentle_gong',
-    ),
-    SoundOption(
-      id: 'zen_bell',
-      displayName: 'Zen Bell',
-      assetPath: 'assets/audio/zen_notification.mp3',
-      androidRawName: 'zen_notification',
     ),
     SoundOption(
       id: 'zen_chime',
@@ -67,12 +55,6 @@ class SoundOption {
       androidRawName: 'chigong',
     ),
     SoundOption(
-      id: 'chi_gong_deep',
-      displayName: 'Deep Chi',
-      assetPath: 'assets/audio/chigong(1).mp3',
-      androidRawName: 'chigong_deep',
-    ),
-    SoundOption(
       id: 'nepal_echo',
       displayName: 'Nepal Echo',
       assetPath: 'assets/audio/nepal_gong_mit_echo.mp3',
@@ -89,12 +71,6 @@ class SoundOption {
       displayName: 'Deep Meditation',
       assetPath: 'assets/audio/meditation.mp3',
       androidRawName: 'meditation',
-    ),
-    SoundOption(
-      id: 'forest_breath',
-      displayName: 'Forest Breath',
-      assetPath: 'assets/audio/faahhhhh.mp3',
-      androidRawName: 'forest_breath',
     ),
   ];
 
