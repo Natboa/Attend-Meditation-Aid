@@ -95,30 +95,45 @@ class _Chip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
-        padding: EdgeInsets.fromLTRB(16, 8, onRemove != null ? 8 : 16, 8),
-        decoration: BoxDecoration(
-          color: selected ? scheme.primary : scheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              label,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: selected ? scheme.onPrimary : scheme.onSurface,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                  ),
+    final bg = selected ? scheme.primary : scheme.surfaceContainerHighest;
+    final labelStyle = Theme.of(context).textTheme.labelLarge?.copyWith(
+          color: selected ? scheme.onPrimary : scheme.onSurface,
+          fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+        );
+
+    // When removable: split into two visually-joined tap zones so the label
+    // area (select) and the × area (delete) have no overlap.
+    if (onRemove != null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: onTap,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              padding: const EdgeInsets.fromLTRB(16, 8, 12, 8),
+              decoration: BoxDecoration(
+                color: bg,
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(20),
+                ),
+              ),
+              child: Text(label, style: labelStyle),
             ),
-            if (onRemove != null) ...[
-              const SizedBox(width: 4),
-              GestureDetector(
-                onTap: onRemove,
-                behavior: HitTestBehavior.opaque,
+          ),
+          GestureDetector(
+            onTap: onRemove,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: bg,
+                borderRadius: const BorderRadius.horizontal(
+                  right: Radius.circular(20),
+                ),
+              ),
+              child: Center(
                 child: Icon(
                   Icons.close,
                   size: 14,
@@ -127,9 +142,22 @@ class _Chip extends StatelessWidget {
                       : scheme.onSurface.withAlpha(120),
                 ),
               ),
-            ],
-          ],
+            ),
+          ),
+        ],
+      );
+    }
+
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: BorderRadius.circular(20),
         ),
+        child: Text(label, style: labelStyle),
       ),
     );
   }
