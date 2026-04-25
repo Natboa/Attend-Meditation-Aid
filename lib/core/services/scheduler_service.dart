@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../models/notification_config.dart';
+import '../models/sound_option.dart';
 import 'notification_service.dart';
 
 class SchedulerService {
@@ -51,6 +52,7 @@ class SchedulerService {
     int secondsFromNow = 10,
   }) async {
     await NotificationService.instance.ensureMindfulnessChannel(soundId);
+    final sound = SoundOption.findById(soundId);
     final dt = DateTime.now().add(Duration(seconds: secondsFromNow));
     final channelId = 'mindfulness_bell_v2_$soundId';
     debugPrint('Attend: scheduling TEST bell at $dt ($secondsFromNow s from now)');
@@ -59,6 +61,7 @@ class SchedulerService {
         'id': 998,
         'epochMs': dt.millisecondsSinceEpoch,
         'channelId': channelId,
+        'soundRawName': sound.androidRawName,
       });
     } catch (e) {
       debugPrint('Attend: FAILED to schedule test bell: $e');

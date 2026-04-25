@@ -38,6 +38,20 @@ class BellSchedulerReceiver : BroadcastReceiver() {
         private const val PREFS_NAME = "FlutterSharedPreferences"
         private const val CONFIG_KEY = "flutter.notification_config"
 
+        // Mirrors Dart's SoundOption.all — maps soundId to raw resource filename (no extension).
+        private val SOUND_RAW_NAMES = mapOf(
+            "tibetan_bowl"    to "tibetan_bowl_1",
+            "meditation_bowl" to "meditation_bowl",
+            "singing_bowl"    to "cuenco_zen",
+            "gentle_gong"     to "gentle_gong",
+            "zen_chime"       to "zen",
+            "crystal_gong"    to "bmw_gong",
+            "chi_gong"        to "chigong",
+            "nepal_echo"      to "nepal_gong_mit_echo",
+            "bamboo_flute"    to "flute",
+            "deep_meditation" to "meditation",
+        )
+
         // Bell alarm IDs: 1000–1499 (supports up to 500 bells = 10/day × 50 days).
         private const val BELL_BASE_ID = 1000
         private const val MAX_BELLS = 500
@@ -87,7 +101,8 @@ class BellSchedulerReceiver : BroadcastReceiver() {
                 val times = computeRandomTimes(config, date, zone, cutoff)
                 for (epochMs in times) {
                     if (idCursor >= MAX_BELLS) break
-                    scheduleBellAlarm(context, am, BELL_BASE_ID + idCursor, epochMs, config.bellSoundId)
+                    val rawName = SOUND_RAW_NAMES[config.bellSoundId] ?: config.bellSoundId
+                    scheduleBellAlarm(context, am, BELL_BASE_ID + idCursor, epochMs, config.bellSoundId, rawName)
                     idCursor++
                 }
             }
@@ -139,6 +154,7 @@ class BellSchedulerReceiver : BroadcastReceiver() {
             id: Int,
             epochMs: Long,
             soundId: String,
+            soundRawName: String,
         ) {
             val channelId = "mindfulness_bell_v2_$soundId"
             val pi = PendingIntent.getBroadcast(
@@ -146,6 +162,7 @@ class BellSchedulerReceiver : BroadcastReceiver() {
                 Intent(context, BellAlarmReceiver::class.java).apply {
                     putExtra(BellAlarmReceiver.EXTRA_NOTIF_ID, id)
                     putExtra(BellAlarmReceiver.EXTRA_CHANNEL_ID, channelId)
+                    putExtra(BellAlarmReceiver.EXTRA_SOUND_RAW_NAME, soundRawName)
                 },
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
             )

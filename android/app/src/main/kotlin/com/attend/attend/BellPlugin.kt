@@ -67,8 +67,9 @@ class BellPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
                     ?: return result.error("ARGS", "epochMs required", null)
                 val channelId = call.argument<String>("channelId")
                     ?: return result.error("ARGS", "channelId required", null)
+                val soundRawName = call.argument<String>("soundRawName")
 
-                scheduleBell(id, epochMs, channelId)
+                scheduleBell(id, epochMs, channelId, soundRawName)
                 result.success(null)
             }
             "cancelBell" -> {
@@ -83,11 +84,12 @@ class BellPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
     // ── Alarm management ──────────────────────────────────────────────────────
 
-    private fun scheduleBell(id: Int, epochMs: Long, channelId: String) {
+    private fun scheduleBell(id: Int, epochMs: Long, channelId: String, soundRawName: String?) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, BellAlarmReceiver::class.java).apply {
             putExtra(BellAlarmReceiver.EXTRA_NOTIF_ID, id)
             putExtra(BellAlarmReceiver.EXTRA_CHANNEL_ID, channelId)
+            if (soundRawName != null) putExtra(BellAlarmReceiver.EXTRA_SOUND_RAW_NAME, soundRawName)
         }
         val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         // FLAG_UPDATE_CURRENT always returns non-null — safe to use !!
