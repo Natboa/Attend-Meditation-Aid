@@ -1,495 +1,3015 @@
 {
-  "version": 1,
+  "version": 2,
   "gathas": [
     {
       "id": "g001",
       "title": "Breathing In",
       "body": "Breathing in, I calm my body.\nBreathing out, I smile.\nDwelling in the present moment,\nI know this is a wonderful moment.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["breathing", "present moment", "smile"]
+      "tags": [
+        "breathing",
+        "present moment",
+        "smile"
+      ]
     },
     {
       "id": "g002",
       "title": "Waking Up",
       "body": "Waking up this morning, I smile.\nTwenty-four brand new hours are before me.\nI vow to live fully in each moment\nand to look at all beings with eyes of compassion.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["morning", "present moment", "compassion"]
+      "tags": [
+        "morning",
+        "present moment",
+        "compassion"
+      ]
     },
     {
       "id": "g003",
       "title": "Walking",
       "body": "The mind can go in a thousand directions,\nbut on this beautiful path, I walk in peace.\nWith each step, the wind blows.\nWith each step, a flower blooms.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["walking", "peace", "present moment"]
+      "tags": [
+        "walking",
+        "peace",
+        "present moment"
+      ]
     },
     {
       "id": "g004",
       "title": "Present Moment",
       "body": "I have arrived.\nI am home.\nIn the here,\nin the now.\nI am solid.\nI am free.\nIn the ultimate I dwell.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["present moment", "home", "freedom"]
+      "tags": [
+        "present moment",
+        "home",
+        "freedom"
+      ]
     },
     {
       "id": "g005",
       "title": "Eating",
       "body": "In this food I see clearly\nthe presence of the entire universe\nsupporting my existence.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["eating", "gratitude", "mindfulness"]
+      "tags": [
+        "eating",
+        "gratitude",
+        "mindfulness"
+      ]
     },
     {
       "id": "g006",
       "title": "The Cloud Never Dies",
       "body": "A cloud never dies.\nIt only transforms.\nLook at the cloud in your teacup,\nin the river, in the rain.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["impermanence", "transformation", "nature"]
+      "tags": [
+        "impermanence",
+        "transformation",
+        "nature"
+      ]
     },
     {
       "id": "g007",
       "title": "Washing Dishes",
       "body": "Washing the dishes\nis like bathing a baby Buddha.\nThe profane is the sacred.\nEveryday mind is Buddha's mind.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["daily life", "mindfulness", "sacred"]
+      "tags": [
+        "daily life",
+        "mindfulness",
+        "sacred"
+      ]
     },
     {
       "id": "g008",
       "title": "Loving Kindness",
       "body": "May I be peaceful, happy, and light\nin body and in spirit.\nMay I be free from injury.\nMay I live in safety.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["compassion", "loving kindness", "safety"]
+      "tags": [
+        "compassion",
+        "loving kindness",
+        "safety"
+      ]
     },
     {
       "id": "g009",
       "title": "Evening",
       "body": "The day is ending.\nOur life is one day shorter.\nLet us look carefully at what we have done.\nLet us practice diligently,\nputting our whole heart into the path of meditation.",
       "attribution": "Traditional",
-      "tags": ["evening", "reflection", "practice"]
+      "tags": [
+        "evening",
+        "reflection",
+        "practice"
+      ]
     },
     {
       "id": "g010",
       "title": "The Flower",
       "body": "I hold a flower in my hand.\nThe whole cosmos is in it.\nEarth, sun, cloud, river,\ntime, space — nothing is absent.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["nature", "present moment", "interconnection"]
+      "tags": [
+        "nature",
+        "present moment",
+        "interconnection"
+      ]
     },
     {
       "id": "g011",
       "title": "No Coming, No Going",
       "body": "No coming, no going,\nno after, no before.\nI hold you close to me,\nI release you to be so free,\nbecause I am in you\nand you are in me.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["impermanence", "love", "interconnection"]
+      "tags": [
+        "impermanence",
+        "love",
+        "interconnection"
+      ]
     },
     {
       "id": "g012",
       "title": "Beginning Anew",
       "body": "Knowing that words can create suffering or happiness,\nI am determined to speak truthfully and constructively,\nusing only words that inspire confidence, joy, and hope.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["speech", "reconciliation", "fresh start"]
+      "tags": [
+        "speech",
+        "reconciliation",
+        "fresh start"
+      ]
     },
     {
       "id": "g013",
       "title": "Listening",
       "body": "I listen to you\nwith the whole of my being.\nI am here.\nNothing else is here but me\nand the sound of your voice.",
       "attribution": "Traditional",
-      "tags": ["listening", "compassion", "presence"]
+      "tags": [
+        "listening",
+        "compassion",
+        "presence"
+      ]
     },
     {
       "id": "g014",
       "title": "Sitting Quietly",
       "body": "Sitting quietly,\ndoing nothing,\nspring comes,\nand the grass grows by itself.",
       "attribution": "Zen poem",
-      "tags": ["sitting", "stillness", "nature"]
+      "tags": [
+        "sitting",
+        "stillness",
+        "nature"
+      ]
     },
     {
       "id": "g015",
       "title": "Interbeing",
       "body": "If you are a poet, you will see clearly\nthat there is a cloud floating in this sheet of paper.\nWithout a cloud, there will be no rain;\nwithout rain, the trees cannot grow;\nand without trees, we cannot make paper.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["interconnection", "nature", "wisdom"]
+      "tags": [
+        "interconnection",
+        "nature",
+        "wisdom"
+      ]
     },
     {
       "id": "g016",
       "title": "Touching the Earth",
       "body": "I call the Earth to witness:\nthe Earth is my mother.\nI am the Earth.\nShe is me.",
       "attribution": "Traditional",
-      "tags": ["earth", "gratitude", "connection"]
+      "tags": [
+        "earth",
+        "gratitude",
+        "connection"
+      ]
     },
     {
       "id": "g017",
       "title": "Stopping",
       "body": "Stop!\nYou don't need to run.\nYou don't need to search.\nEverything you need is already here.",
       "attribution": "Traditional",
-      "tags": ["stillness", "present moment", "enough"]
+      "tags": [
+        "stillness",
+        "present moment",
+        "enough"
+      ]
     },
     {
       "id": "g018",
       "title": "The Smile",
       "body": "Sometimes your joy is the source of your smile,\nbut sometimes your smile can be the source of your joy.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["joy", "smile", "practice"]
+      "tags": [
+        "joy",
+        "smile",
+        "practice"
+      ]
     },
     {
       "id": "g019",
       "title": "Embracing Anger",
       "body": "Breathing in, I know that anger is in me.\nBreathing out, I smile at my anger.\nI am there for my anger\nas a mother holds her child.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["anger", "compassion", "emotion"]
+      "tags": [
+        "anger",
+        "compassion",
+        "emotion"
+      ]
     },
     {
       "id": "g020",
       "title": "The River",
       "body": "Life is like a river.\nYou cannot step in it twice.\nYet here you stand,\nstepping in again and again,\nand each time it is new.",
       "attribution": "Traditional",
-      "tags": ["impermanence", "nature", "freshness"]
+      "tags": [
+        "impermanence",
+        "nature",
+        "freshness"
+      ]
     },
     {
       "id": "g021",
       "title": "Bell of Mindfulness",
       "body": "Listen, listen,\nthis wonderful sound\nbrings me back\nto my true home.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["bell", "mindfulness", "present moment"]
+      "tags": [
+        "bell",
+        "mindfulness",
+        "present moment"
+      ]
     },
     {
       "id": "g022",
       "title": "This Moment",
       "body": "The present moment\nis the only moment\navailable to us,\nand it is the door\nto all moments.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["present moment", "awareness", "time"]
+      "tags": [
+        "present moment",
+        "awareness",
+        "time"
+      ]
     },
     {
       "id": "g023",
       "title": "Old Pond",
       "body": "An old silent pond.\nA frog jumps into the pond.\nSplash! Silence again.",
       "attribution": "Matsuo Bashō",
-      "tags": ["haiku", "stillness", "nature"]
+      "tags": [
+        "haiku",
+        "stillness",
+        "nature"
+      ]
     },
     {
       "id": "g024",
       "title": "Autumn Moonlight",
       "body": "Autumn moonlight —\na worm digs silently\ninto the chestnut.",
       "attribution": "Matsuo Bashō",
-      "tags": ["haiku", "nature", "impermanence"]
+      "tags": [
+        "haiku",
+        "nature",
+        "impermanence"
+      ]
     },
     {
       "id": "g025",
       "title": "Over the Wintry Forest",
       "body": "Over the wintry forest,\nwinds howl in rage\nwith no leaves to blow.",
       "attribution": "Natsume Soseki",
-      "tags": ["haiku", "nature", "stillness"]
+      "tags": [
+        "haiku",
+        "nature",
+        "stillness"
+      ]
     },
     {
       "id": "g026",
       "title": "In the Beginner's Mind",
       "body": "In the beginner's mind there are many possibilities,\nbut in the expert's mind there are few.",
       "attribution": "Shunryu Suzuki",
-      "tags": ["beginners mind", "wisdom", "openness"]
+      "tags": [
+        "beginners mind",
+        "wisdom",
+        "openness"
+      ]
     },
     {
       "id": "g027",
       "title": "Not Two",
       "body": "The great way is not difficult\nfor those who have no preferences.\nWhen love and hate are both absent,\neverything becomes clear and undisguised.",
       "attribution": "Sengcan",
-      "tags": ["non-duality", "wisdom", "equanimity"]
+      "tags": [
+        "non-duality",
+        "wisdom",
+        "equanimity"
+      ]
     },
     {
       "id": "g028",
       "title": "Just This",
       "body": "Before enlightenment,\nchop wood, carry water.\nAfter enlightenment,\nchop wood, carry water.",
       "attribution": "Zen proverb",
-      "tags": ["daily life", "practice", "wisdom"]
+      "tags": [
+        "daily life",
+        "practice",
+        "wisdom"
+      ]
     },
     {
       "id": "g029",
       "title": "Soft Rain",
       "body": "Let the soft animal of your body\nlove what it loves.\nTell me about despair, yours,\nand I will tell you mine.",
       "attribution": "Mary Oliver",
-      "tags": ["self-compassion", "nature", "honesty"]
+      "tags": [
+        "self-compassion",
+        "nature",
+        "honesty"
+      ]
     },
     {
       "id": "g030",
       "title": "Instructions for Living a Life",
       "body": "Pay attention.\nBe astonished.\nTell about it.",
       "attribution": "Mary Oliver",
-      "tags": ["attention", "wonder", "life"]
+      "tags": [
+        "attention",
+        "wonder",
+        "life"
+      ]
     },
     {
       "id": "g031",
       "title": "What Is It You Plan to Do",
       "body": "Tell me, what is it you plan to do\nwith your one wild and precious life?",
       "attribution": "Mary Oliver",
-      "tags": ["life", "intention", "wonder"]
+      "tags": [
+        "life",
+        "intention",
+        "wonder"
+      ]
     },
     {
       "id": "g032",
       "title": "Keeping Quiet",
       "body": "Now we will count to twelve\nand we will all keep still.\n\nFor once on the face of the Earth,\nlet's not speak in any language;\nlet's stop for one second,\nand not move our arms so much.",
       "attribution": "Pablo Neruda",
-      "tags": ["stillness", "silence", "peace"]
+      "tags": [
+        "stillness",
+        "silence",
+        "peace"
+      ]
     },
     {
       "id": "g033",
       "title": "The Guest House",
       "body": "This being human is a guest house.\nEvery morning a new arrival.\n\nA joy, a depression, a meanness,\nsome momentary awareness comes\nas an unexpected visitor.",
       "attribution": "Rumi",
-      "tags": ["acceptance", "emotion", "openness"]
+      "tags": [
+        "acceptance",
+        "emotion",
+        "openness"
+      ]
     },
     {
       "id": "g034",
       "title": "Out Beyond Ideas",
       "body": "Out beyond ideas of wrongdoing and rightdoing,\nthere is a field.\nI'll meet you there.",
       "attribution": "Rumi",
-      "tags": ["non-judgment", "love", "peace"]
+      "tags": [
+        "non-judgment",
+        "love",
+        "peace"
+      ]
     },
     {
       "id": "g035",
       "title": "The Reed Flute",
       "body": "Listen to the story told by the reed,\nof being separated.\n\nSince I was cut from the reed bed,\nI have made this crying sound.",
       "attribution": "Rumi",
-      "tags": ["longing", "music", "connection"]
+      "tags": [
+        "longing",
+        "music",
+        "connection"
+      ]
     },
     {
       "id": "g036",
       "title": "Love Dogs",
       "body": "The grief you cry out from\ndraws you toward union.\n\nYour pure sadness\nthat wants help\nis the secret cup.",
       "attribution": "Rumi",
-      "tags": ["grief", "longing", "surrender"]
+      "tags": [
+        "grief",
+        "longing",
+        "surrender"
+      ]
     },
     {
       "id": "g037",
       "title": "Hokku",
       "body": "The temple bell stops —\nbut the sound keeps coming\nout of the flowers.",
       "attribution": "Matsuo Bashō",
-      "tags": ["haiku", "bell", "nature"]
+      "tags": [
+        "haiku",
+        "bell",
+        "nature"
+      ]
     },
     {
       "id": "g038",
       "title": "First Cold Showers",
       "body": "First cold showers —\neven the monkey seems to want\na little coat of straw.",
       "attribution": "Matsuo Bashō",
-      "tags": ["haiku", "compassion", "nature"]
+      "tags": [
+        "haiku",
+        "compassion",
+        "nature"
+      ]
     },
     {
       "id": "g039",
       "title": "The Way It Is",
       "body": "There's a thread you follow.\nIt goes among things that change.\nBut it doesn't change.\n\nPeople wonder about what you are pursuing.\nYou have to explain about the thread.",
       "attribution": "William Stafford",
-      "tags": ["intention", "path", "life"]
+      "tags": [
+        "intention",
+        "path",
+        "life"
+      ]
     },
     {
       "id": "g040",
       "title": "Kindness",
       "body": "Before you know kindness as the deepest thing inside,\nyou must know sorrow as the other deepest thing.",
       "attribution": "Naomi Shihab Nye",
-      "tags": ["kindness", "sorrow", "compassion"]
+      "tags": [
+        "kindness",
+        "sorrow",
+        "compassion"
+      ]
     },
     {
       "id": "g041",
       "title": "Love After Love",
       "body": "The time will come\nwhen, with elation,\nyou will greet yourself arriving\nat your own door, in your own mirror,\nand each will smile at the other's welcome.",
       "attribution": "Derek Walcott",
-      "tags": ["self-love", "healing", "joy"]
+      "tags": [
+        "self-love",
+        "healing",
+        "joy"
+      ]
     },
     {
       "id": "g042",
       "title": "Wild Geese",
       "body": "You do not have to be good.\nYou do not have to walk on your knees\nfor a hundred miles through the desert repenting.\nYou only have to let the soft animal of your body\nlove what it loves.",
       "attribution": "Mary Oliver",
-      "tags": ["self-compassion", "nature", "freedom"]
+      "tags": [
+        "self-compassion",
+        "nature",
+        "freedom"
+      ]
     },
     {
       "id": "g043",
       "title": "The Peace of Wild Things",
       "body": "When despair for the world grows in me\nand I wake in the night at the least sound\nin fear of what my life and my children's lives may be,\nI go and lie down where the wood drake\nrests in his beauty on the water.",
       "attribution": "Wendell Berry",
-      "tags": ["nature", "peace", "fear"]
+      "tags": [
+        "nature",
+        "peace",
+        "fear"
+      ]
     },
     {
       "id": "g044",
       "title": "Rain",
       "body": "Rain, whose soft architectural hands\nhave power to cut stones,\nand chisel to shapes of grandeur\nthe very mountains.",
       "attribution": "Henry Ward Beecher",
-      "tags": ["nature", "patience", "power"]
+      "tags": [
+        "nature",
+        "patience",
+        "power"
+      ]
     },
     {
       "id": "g045",
       "title": "Equanimity",
       "body": "This too shall pass.\nLet it come, let it be, let it go.\nThe roots hold.\nThe branches bow and spring back.",
       "attribution": "Traditional",
-      "tags": ["equanimity", "impermanence", "resilience"]
+      "tags": [
+        "equanimity",
+        "impermanence",
+        "resilience"
+      ]
     },
     {
       "id": "g046",
       "title": "Morning Bell",
       "body": "The bell of the temple\nstirs the morning air.\nBirds take flight.\nMind takes flight.\nBoth return to stillness.",
       "attribution": "Traditional",
-      "tags": ["bell", "morning", "stillness"]
+      "tags": [
+        "bell",
+        "morning",
+        "stillness"
+      ]
     },
     {
       "id": "g047",
       "title": "Sitting Practice",
       "body": "Just sit.\nNot trying to get anywhere.\nNot trying to become anything.\nJust this breath.\nJust this moment.\nJust this.",
       "attribution": "Traditional",
-      "tags": ["sitting", "meditation", "present moment"]
+      "tags": [
+        "sitting",
+        "meditation",
+        "present moment"
+      ]
     },
     {
       "id": "g048",
       "title": "Autumn Leaves",
       "body": "One by one the autumn leaves release,\nnot in despair but in surrender.\nEach leaf has known\nevery single summer it was given.",
       "attribution": "Traditional",
-      "tags": ["impermanence", "nature", "acceptance"]
+      "tags": [
+        "impermanence",
+        "nature",
+        "acceptance"
+      ]
     },
     {
       "id": "g049",
       "title": "The Lantern",
       "body": "Do not search for the light far away.\nLight the lantern within.\nLet it shine on one step,\nthen the next.",
       "attribution": "Traditional",
-      "tags": ["inner light", "wisdom", "practice"]
+      "tags": [
+        "inner light",
+        "wisdom",
+        "practice"
+      ]
     },
     {
       "id": "g050",
       "title": "No Mud, No Lotus",
       "body": "Without suffering, there is no happiness,\nand without happiness, there is no suffering.\nThe lotus does not grow on marble.\nIt grows in the mud.",
       "attribution": "Thich Nhat Hanh",
-      "tags": ["suffering", "happiness", "transformation"]
+      "tags": [
+        "suffering",
+        "happiness",
+        "transformation"
+      ]
     },
     {
       "id": "g051",
       "title": "Returning",
       "body": "You don't have to travel far.\nThe journey is inward.\nAnd the destination\nis always right here.",
       "attribution": "Traditional",
-      "tags": ["inner journey", "present moment", "home"]
+      "tags": [
+        "inner journey",
+        "present moment",
+        "home"
+      ]
     },
     {
       "id": "g052",
       "title": "Between Thoughts",
       "body": "There is a gap between thoughts.\nA small silence.\nIf you look carefully,\nthat gap is always there.\nThat gap is you.",
       "attribution": "Traditional",
-      "tags": ["awareness", "meditation", "stillness"]
+      "tags": [
+        "awareness",
+        "meditation",
+        "stillness"
+      ]
     },
     {
       "id": "g053",
       "title": "Not Knowing",
       "body": "Not knowing is most intimate.\nThe question held gently\nis worth more\nthan a thousand answers grabbed.",
       "attribution": "Zen proverb",
-      "tags": ["not knowing", "inquiry", "openness"]
+      "tags": [
+        "not knowing",
+        "inquiry",
+        "openness"
+      ]
     },
     {
       "id": "g054",
       "title": "Deep Roots",
       "body": "Even the great oak tree\nwas once an acorn\nthat held its ground\nduring the storm.",
       "attribution": "Traditional",
-      "tags": ["patience", "resilience", "nature"]
+      "tags": [
+        "patience",
+        "resilience",
+        "nature"
+      ]
     },
     {
       "id": "g055",
       "title": "Open Hands",
       "body": "Hold everything lightly.\nNothing can be grasped forever.\nOpen hands receive more\nthan clenched fists ever could.",
       "attribution": "Traditional",
-      "tags": ["letting go", "receiving", "non-attachment"]
+      "tags": [
+        "letting go",
+        "receiving",
+        "non-attachment"
+      ]
     },
     {
       "id": "g056",
       "title": "The Candle",
       "body": "A candle lit in the dark\ndoes not fight the darkness.\nIt simply shines.\nThat is enough.",
       "attribution": "Traditional",
-      "tags": ["inner light", "peace", "enough"]
+      "tags": [
+        "inner light",
+        "peace",
+        "enough"
+      ]
     },
     {
       "id": "g057",
       "title": "Rain on the Roof",
       "body": "Rain on the roof at night.\nNo thought of tomorrow.\nJust this sound,\nthis rhythm,\nthis grace.",
       "attribution": "Traditional",
-      "tags": ["nature", "present moment", "grace"]
+      "tags": [
+        "nature",
+        "present moment",
+        "grace"
+      ]
     },
     {
       "id": "g058",
       "title": "Snow",
       "body": "Under the winter snow\nthe field is resting.\nUnder the winter mind\nthe wisdom is resting.",
       "attribution": "Traditional",
-      "tags": ["winter", "rest", "wisdom"]
+      "tags": [
+        "winter",
+        "rest",
+        "wisdom"
+      ]
     },
     {
       "id": "g059",
       "title": "The Mirror",
       "body": "The mirror reflects all things\nwithout preference.\nMay the mind be like this:\nclear, open, without preference.",
       "attribution": "Traditional",
-      "tags": ["equanimity", "clarity", "mind"]
+      "tags": [
+        "equanimity",
+        "clarity",
+        "mind"
+      ]
     },
     {
       "id": "g060",
       "title": "This Ordinary Moment",
       "body": "Nothing special is needed.\nThis cup of tea.\nThis breath.\nThis patch of light on the floor.\nThis is the sacred.",
       "attribution": "Traditional",
-      "tags": ["ordinary life", "sacred", "present moment"]
+      "tags": [
+        "ordinary life",
+        "sacred",
+        "present moment"
+      ]
     },
     {
       "id": "g061",
       "title": "Touched by the Wind",
       "body": "Be like the tree:\nrooted in the earth,\ntouched by the wind,\nreaching toward the light,\nnourishing what rests in your shade.",
       "attribution": "Traditional",
-      "tags": ["nature", "groundedness", "growth"]
+      "tags": [
+        "nature",
+        "groundedness",
+        "growth"
+      ]
     },
     {
       "id": "g062",
       "title": "Ripples",
       "body": "A single act of kindness\nspreads outward\nlike ripples on a still pond —\nbeyond what the eye can see.",
       "attribution": "Traditional",
-      "tags": ["kindness", "interconnection", "action"]
+      "tags": [
+        "kindness",
+        "interconnection",
+        "action"
+      ]
     },
     {
       "id": "g063",
       "title": "Breath is Home",
       "body": "No matter how far you have wandered,\none breath brings you back.\nThe breath is always home.\nYou are never truly lost.",
       "attribution": "Traditional",
-      "tags": ["breathing", "home", "return"]
+      "tags": [
+        "breathing",
+        "home",
+        "return"
+      ]
     },
     {
       "id": "g064",
       "title": "The Hermit Crab",
       "body": "The hermit crab carries its home\neverywhere it goes.\nSo do you.\nYour home is not a place.",
       "attribution": "Traditional",
-      "tags": ["home", "inner peace", "nature"]
+      "tags": [
+        "home",
+        "inner peace",
+        "nature"
+      ]
     },
     {
       "id": "g065",
       "title": "Afternoon Light",
       "body": "In the late afternoon light,\ndust motes float without purpose.\nAnd yet they are perfect.\nAnd yet so are you.",
       "attribution": "Traditional",
-      "tags": ["self-acceptance", "light", "present moment"]
+      "tags": [
+        "self-acceptance",
+        "light",
+        "present moment"
+      ]
     },
     {
       "id": "g066",
       "title": "The Moon",
       "body": "The moon does not fight\nthe clouds that cover it.\nIt waits.\nAnd always it emerges,\nunchanged.",
       "attribution": "Traditional",
-      "tags": ["patience", "equanimity", "nature"]
+      "tags": [
+        "patience",
+        "equanimity",
+        "nature"
+      ]
     },
     {
       "id": "g067",
       "title": "Nothing to Fix",
       "body": "You are not a problem to be solved.\nYou are a life to be lived.\nThere is nothing broken here.\nOnly what needs tending.",
       "attribution": "Traditional",
-      "tags": ["self-acceptance", "wholeness", "healing"]
+      "tags": [
+        "self-acceptance",
+        "wholeness",
+        "healing"
+      ]
     },
     {
       "id": "g068",
       "title": "Beginning",
       "body": "Every morning the sun rises\nas if for the first time.\nEvery breath you draw\nis a new beginning.",
       "attribution": "Traditional",
-      "tags": ["morning", "fresh start", "beginners mind"]
+      "tags": [
+        "morning",
+        "fresh start",
+        "beginners mind"
+      ]
     },
     {
       "id": "g069",
       "title": "The Sky Mind",
       "body": "The sky does not try to hold\nthe clouds or the birds.\nIt simply holds them\nby letting them go.\nBe like the sky.",
       "attribution": "Traditional",
-      "tags": ["mind", "awareness", "letting go"]
+      "tags": [
+        "mind",
+        "awareness",
+        "letting go"
+      ]
     },
     {
       "id": "g070",
       "title": "Enough",
       "body": "You have walked far today.\nYou have done enough.\nYou have been enough.\nRest now.\nThis moment is enough.",
       "attribution": "Traditional",
-      "tags": ["rest", "self-compassion", "enough"]
+      "tags": [
+        "rest",
+        "self-compassion",
+        "enough"
+      ]
+    },
+    {
+      "id": "g071",
+      "title": "All that we are is the result of what we…",
+      "body": "All that we are is the result of what we have thought: it is founded on our thoughts, it is made up of our thoughts.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "mind"
+      ]
+    },
+    {
+      "id": "g072",
+      "title": "Hatred does not cease by hatred at any…",
+      "body": "Hatred does not cease by hatred at any time: hatred ceases by love, this is an old rule.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "loving kindness",
+        "time"
+      ]
+    },
+    {
+      "id": "g073",
+      "title": "Earnestness is the path of immortality…",
+      "body": "Earnestness is the path of immortality, thoughtlessness the path of death.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "impermanence",
+        "mind"
+      ]
+    },
+    {
+      "id": "g074",
+      "title": "As a fletcher makes straight his arrow, a…",
+      "body": "As a fletcher makes straight his arrow, a wise man makes straight his trembling and unsteady thought.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "mind",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g075",
+      "title": "It is good to tame the mind, which is…",
+      "body": "It is good to tame the mind, which is difficult to hold in and flighty.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "mind",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g076",
+      "title": "Long is the night to him who is awake…",
+      "body": "Long is the night to him who is awake; long is a mile to him who is tired.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g077",
+      "title": "The fool who knows his foolishness, is…",
+      "body": "The fool who knows his foolishness, is wise at least so far.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "present moment",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g078",
+      "title": "If you see an intelligent man who tells…",
+      "body": "If you see an intelligent man who tells you where true treasures are to be found, follow that wise man.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g079",
+      "title": "As a solid rock is not shaken by the…",
+      "body": "As a solid rock is not shaken by the wind, wise people falter not amidst blame and praise.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "nature",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g080",
+      "title": "Even though a speech be a thousand words…",
+      "body": "Even though a speech be a thousand words, but made up of senseless words, one word of sense is better.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "speech"
+      ]
+    },
+    {
+      "id": "g081",
+      "title": "If one man conquer in battle a thousand…",
+      "body": "If one man conquer in battle a thousand times thousand men, and if another conquer himself, he is the greatest of conquerors.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "self",
+        "time"
+      ]
+    },
+    {
+      "id": "g082",
+      "title": "If a man would hasten towards the good…",
+      "body": "If a man would hasten towards the good, he should keep his thought away from evil.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "mind",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g083",
+      "title": "Let no man think lightly of evil, saying…",
+      "body": "Let no man think lightly of evil, saying in his heart, It will not come nigh unto me.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g084",
+      "title": "He who has no wound on his hand, may…",
+      "body": "He who has no wound on his hand, may touch poison with his hand; poison does not affect one who has no wound.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g085",
+      "title": "If a man hold himself dear, let him watch…",
+      "body": "If a man hold himself dear, let him watch himself carefully.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "self"
+      ]
+    },
+    {
+      "id": "g086",
+      "title": "Self is the lord of self, who else could…",
+      "body": "Self is the lord of self, who else could be the lord?",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "self"
+      ]
+    },
+    {
+      "id": "g087",
+      "title": "By oneself the evil is done, by oneself…",
+      "body": "By oneself the evil is done, by oneself one suffers; by oneself evil is left undone, by oneself one is purified.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "self"
+      ]
+    },
+    {
+      "id": "g088",
+      "title": "Look upon the world as a bubble, look…",
+      "body": "Look upon the world as a bubble, look upon it as a mirage.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g089",
+      "title": "Let us live happily then, not hating…",
+      "body": "Let us live happily then, not hating those who hate us!",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "joy"
+      ]
+    },
+    {
+      "id": "g090",
+      "title": "Victory breeds hatred, for the conquered…",
+      "body": "Victory breeds hatred, for the conquered is unhappy.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g091",
+      "title": "Hunger is the worst of diseases, the body…",
+      "body": "Hunger is the worst of diseases, the body the greatest of pains; if one knows this truly, that is Nirvana.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "body",
+        "present moment",
+        "suffering"
+      ]
+    },
+    {
+      "id": "g092",
+      "title": "He who walks in the company of fools…",
+      "body": "He who walks in the company of fools suffers a long way.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g093",
+      "title": "Let a man leave anger, let him forsake…",
+      "body": "Let a man leave anger, let him forsake pride, let him overcome all bondage!",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "emotions"
+      ]
+    },
+    {
+      "id": "g094",
+      "title": "Let a man overcome anger by love, let him…",
+      "body": "Let a man overcome anger by love, let him overcome evil by good.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "emotions",
+        "loving kindness",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g095",
+      "title": "Speak the truth, do not yield to anger…",
+      "body": "Speak the truth, do not yield to anger; give, if thou art asked for little.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "emotions"
+      ]
+    },
+    {
+      "id": "g096",
+      "title": "He who does not rouse himself when it is…",
+      "body": "He who does not rouse himself when it is time to rise, who, though young and strong, is full of sloth, will never find the way to knowledge.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "present moment",
+        "self",
+        "time",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g097",
+      "title": "Silently shall I endure abuse as the…",
+      "body": "Silently shall I endure abuse as the elephant in battle endures the arrow sent from the bow.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g098",
+      "title": "A man does not become a Brahmana by his…",
+      "body": "A man does not become a Brahmana by his platted hair, by his family, or by birth; in whom there is truth and righteousness, he is blessed.",
+      "attribution": "Dhammapada, trans. F. Max Müller",
+      "tags": [
+        "buddhism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g099",
+      "title": "Whatsoever any man either doth or saith…",
+      "body": "Whatsoever any man either doth or saith, thou must be good.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g100",
+      "title": "The best kind of revenge is, not to…",
+      "body": "The best kind of revenge is, not to become like unto them.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g101",
+      "title": "Such as thy thoughts and ordinary…",
+      "body": "Such as thy thoughts and ordinary cogitations are, such will thy mind be.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "mind"
+      ]
+    },
+    {
+      "id": "g102",
+      "title": "A happy lot and portion is, good…",
+      "body": "A happy lot and portion is, good inclinations of the soul, good desires, good actions.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "action",
+        "emotions",
+        "soul",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g103",
+      "title": "Do nothing rashly, and at random, but all…",
+      "body": "Do nothing rashly, and at random, but all things according to rules of art.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g104",
+      "title": "At what time soever thou wilt, it is in…",
+      "body": "At what time soever thou wilt, it is in thy power to retire into thyself.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "self",
+        "time"
+      ]
+    },
+    {
+      "id": "g105",
+      "title": "All reasonable creatures are made one for…",
+      "body": "All reasonable creatures are made one for another; it is part of justice.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "reason"
+      ]
+    },
+    {
+      "id": "g106",
+      "title": "Remember how long thou hast already put…",
+      "body": "Remember how long thou hast already put off these things.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g107",
+      "title": "The time of a man's life is as a point…",
+      "body": "The time of a man's life is as a point; the substance ever flowing.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "life",
+        "time"
+      ]
+    },
+    {
+      "id": "g108",
+      "title": "Nothing is good but virtue, and nothing…",
+      "body": "Nothing is good but virtue, and nothing but vice is bad.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g109",
+      "title": "Let opinion be taken away, and no man…",
+      "body": "Let opinion be taken away, and no man will think himself wronged.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "self"
+      ]
+    },
+    {
+      "id": "g110",
+      "title": "Death hangs over thee: whilst yet thou…",
+      "body": "Death hangs over thee: whilst yet thou livest, be good.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g111",
+      "title": "What is it then that will adhere and…",
+      "body": "What is it then that will adhere and follow? Only one thing, philosophy.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g112",
+      "title": "Whatsoever doth happen in the world, doth…",
+      "body": "Whatsoever doth happen in the world, doth happen justly.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g113",
+      "title": "The world is mere change, and this life…",
+      "body": "The world is mere change, and this life, opinion.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence",
+        "life"
+      ]
+    },
+    {
+      "id": "g114",
+      "title": "A man cannot any whither retire better…",
+      "body": "A man cannot any whither retire better than to his own soul.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "soul"
+      ]
+    },
+    {
+      "id": "g115",
+      "title": "If thou hast reason, why then makest thou…",
+      "body": "If thou hast reason, why then makest thou not use of it?",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "reason"
+      ]
+    },
+    {
+      "id": "g116",
+      "title": "The things or objects themselves reach…",
+      "body": "The things or objects themselves reach not unto the soul, but stand without still and quiet.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "soul",
+        "stillness"
+      ]
+    },
+    {
+      "id": "g117",
+      "title": "Thou must hasten therefore; not only…",
+      "body": "Thou must hasten therefore; not only because thou art every day nearer unto death, but also because the mind doth first go away.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence",
+        "mind"
+      ]
+    },
+    {
+      "id": "g118",
+      "title": "Why should any of these things that…",
+      "body": "Why should any of these things that happen externally, so much distract thee?",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g119",
+      "title": "There are things which are within our…",
+      "body": "There are things which are within our power, and there are things which are beyond our power.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g120",
+      "title": "Men are disturbed not by things, but by…",
+      "body": "Men are disturbed not by things, but by the views which they take of things.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g121",
+      "title": "Demand not that events should happen as…",
+      "body": "Demand not that events should happen as you wish; but wish them to happen as they do happen, and you will go on well.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g122",
+      "title": "Sickness is an impediment to the body…",
+      "body": "Sickness is an impediment to the body, but not to the will, unless itself pleases.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism",
+        "body",
+        "self"
+      ]
+    },
+    {
+      "id": "g123",
+      "title": "Never say of anything, 'I have lost it,'…",
+      "body": "Never say of anything, 'I have lost it,' but, 'I have restored it.'",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g124",
+      "title": "If you would improve, be content to be…",
+      "body": "If you would improve, be content to be thought foolish and dull with regard to externals.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism",
+        "mind"
+      ]
+    },
+    {
+      "id": "g125",
+      "title": "A man's master is he who is able to…",
+      "body": "A man's master is he who is able to confer or remove whatever that man seeks or shuns.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g126",
+      "title": "Remember that you are an actor in a drama…",
+      "body": "Remember that you are an actor in a drama of such sort as the Author chooses.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g127",
+      "title": "You can be unconquerable if you enter…",
+      "body": "You can be unconquerable if you enter into no combat in which it is not in your own power to conquer.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g128",
+      "title": "It is not he who gives abuse or blows who…",
+      "body": "It is not he who gives abuse or blows who affronts, but the view we take of these things as insulting.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g129",
+      "title": "Let death and exile, and all other things…",
+      "body": "Let death and exile, and all other things which appear terrible, be daily before your eyes.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g130",
+      "title": "Whatever rules you have adopted, abide by…",
+      "body": "Whatever rules you have adopted, abide by them as laws, and as if you would be impious to transgress them.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g131",
+      "title": "The condition and characteristic of a…",
+      "body": "The condition and characteristic of a vulgar person is that he never looks for either help nor harm from himself, but from externals.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism",
+        "self"
+      ]
+    },
+    {
+      "id": "g132",
+      "title": "If you ever happen to turn your attention…",
+      "body": "If you ever happen to turn your attention to externals, for the pleasure of anyone, you have ruined your scheme of life.",
+      "attribution": "Enchiridion, trans. George Long",
+      "tags": [
+        "stoicism",
+        "life"
+      ]
+    },
+    {
+      "id": "g133",
+      "title": "The Tao that can be trodden is not the…",
+      "body": "The Tao that can be trodden is not the enduring and unchanging Tao.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g134",
+      "title": "The highest excellence is like that of…",
+      "body": "The highest excellence is like that of water. The excellence of water appears in its benefiting all things, and in occupying, without striving, the low place which all men dislike.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "nature"
+      ]
+    },
+    {
+      "id": "g135",
+      "title": "The partial becomes complete; the…",
+      "body": "The partial becomes complete; the crooked, straight; the empty, full; the worn out, new.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g136",
+      "title": "Gravity is the root of lightness…",
+      "body": "Gravity is the root of lightness; stillness is the ruler of movement.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "stillness"
+      ]
+    },
+    {
+      "id": "g137",
+      "title": "The Tao, considered as unchanging, has no…",
+      "body": "The Tao, considered as unchanging, has no name. Though in its primordial simplicity it may be small, the whole world dares not deal with it as a minister.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g138",
+      "title": "The tree which fills the arms grew from…",
+      "body": "The tree which fills the arms grew from the tiniest sprout; the tower of nine storeys rose from a small heap of earth.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "nature"
+      ]
+    },
+    {
+      "id": "g139",
+      "title": "Sincere words are not fine; fine words…",
+      "body": "Sincere words are not fine; fine words are not sincere.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "speech"
+      ]
+    },
+    {
+      "id": "g140",
+      "title": "What has a positive existence serves for…",
+      "body": "What has a positive existence serves for profitable adaptation, and what has not that for actual usefulness.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g141",
+      "title": "All things alike go through their…",
+      "body": "All things alike go through their processes of activity, and then we see them return to their original state.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g142",
+      "title": "In pursuing learning, every day something…",
+      "body": "In pursuing learning, every day something is acquired. In pursuing the Tao, every day something is dropped.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g143",
+      "title": "Is it not pleasant to learn with constant…",
+      "body": "Is it not pleasant to learn with constant perseverance? Is it not delightful to have friends come from distant quarters?",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "friendship"
+      ]
+    },
+    {
+      "id": "g144",
+      "title": "Fine words and an insinuating appearance…",
+      "body": "Fine words and an insinuating appearance are seldom associated with true virtue.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "speech",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g145",
+      "title": "Learning without thought is labour lost…",
+      "body": "Learning without thought is labour lost; thought without learning is perilous.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "mind"
+      ]
+    },
+    {
+      "id": "g146",
+      "title": "When the year becomes cold, then we know…",
+      "body": "When the year becomes cold, then we know how the pine and the cypress are the last to lose their leaves.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g147",
+      "title": "The superior man is satisfied and…",
+      "body": "The superior man is satisfied and composed; the mean man is always full of distress.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism"
+      ]
+    },
+    {
+      "id": "g148",
+      "title": "Hold faithfulness and sincerity as first…",
+      "body": "Hold faithfulness and sincerity as first principles. Have no friends not equal to yourself.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "friendship",
+        "self"
+      ]
+    },
+    {
+      "id": "g149",
+      "title": "If a man withdraws his mind from the love…",
+      "body": "If a man withdraws his mind from the love of beauty, and applies it as sincerely to the love of virtue, he has learned indeed.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "loving kindness",
+        "mind",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g150",
+      "title": "The superior man bends his attention to…",
+      "body": "The superior man bends his attention to what is radical. When the root is established, the way naturally grows.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism"
+      ]
+    },
+    {
+      "id": "g151",
+      "title": "I daily examine myself on three points…",
+      "body": "I daily examine myself on three points: whether, in transacting business for others, I may have been not faithful; whether, in intercourse with friends, I may have been not sincere; whether I may have not mastered and practiced the instructions of my teacher.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "friendship",
+        "self"
+      ]
+    },
+    {
+      "id": "g152",
+      "title": "He who exercises government by means of…",
+      "body": "He who exercises government by means of his virtue may be compared to the north polar star, which keeps its place and all the stars turn towards it.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g153",
+      "title": "At fifteen, I had my mind bent on…",
+      "body": "At fifteen, I had my mind bent on learning. At thirty, I stood firm. At forty, I had no doubts. At fifty, I knew the decrees of Heaven. At sixty, my ear was an obedient organ. At seventy, I could follow what my heart desired, without transgressing what was right.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "emotions",
+        "mind"
+      ]
+    },
+    {
+      "id": "g154",
+      "title": "Filial piety and fraternal submission —…",
+      "body": "Filial piety and fraternal submission — are they not the root of all benevolent actions?",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "action"
+      ]
+    },
+    {
+      "id": "g155",
+      "title": "When you know a thing, to hold that you…",
+      "body": "When you know a thing, to hold that you know it; and when you do not know a thing, to allow that you do not know it — this is knowledge.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "present moment",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g156",
+      "title": "Recompense injury with justice, and…",
+      "body": "Recompense injury with justice, and recompense kindness with kindness.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism"
+      ]
+    },
+    {
+      "id": "g157",
+      "title": "The man of virtue, wishing to be…",
+      "body": "The man of virtue, wishing to be established himself, seeks also to establish others; wishing to be enlarged himself, he seeks also to enlarge others.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "self",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g158",
+      "title": "What you do not want done to yourself, do…",
+      "body": "What you do not want done to yourself, do not do to others.",
+      "attribution": "Analects, trans. James Legge",
+      "tags": [
+        "confucianism",
+        "self"
+      ]
+    },
+    {
+      "id": "g159",
+      "title": "Keep thyself pure from all violent…",
+      "body": "Keep thyself pure from all violent passion and evil affection, from all rashness and vanity, and from all manner of discontent.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "self"
+      ]
+    },
+    {
+      "id": "g160",
+      "title": "Nature has given us a counteracting…",
+      "body": "Nature has given us a counteracting virtue; as, for example, against the unthankful, it hath given goodness and meekness.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "nature",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g161",
+      "title": "Nothing useful and profitable can be…",
+      "body": "Nothing useful and profitable can be brought about without change.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g162",
+      "title": "All these things, which now thou seest…",
+      "body": "All these things, which now thou seest, shall within a very little while be changed, and be no more.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g163",
+      "title": "The world is as it were a city. For what…",
+      "body": "The world is as it were a city. For what other common polity can a man allege, that is fit for all men?",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g164",
+      "title": "As generation is, so also death, a secret…",
+      "body": "As generation is, so also death, a secret of nature's wisdom: a mixture of elements, resolved into the same elements again.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "impermanence",
+        "nature",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g165",
+      "title": "Within a very little while, both thou and…",
+      "body": "Within a very little while, both thou and he shall both be dead, and after a little while more, not so much as your names and memories shall be remaining.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g166",
+      "title": "Confine thyself to necessary actions; to…",
+      "body": "Confine thyself to necessary actions; to such and so many only, as reason will command and enjoin.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "action",
+        "reason",
+        "self"
+      ]
+    },
+    {
+      "id": "g167",
+      "title": "He does his duty as a good soldier…",
+      "body": "He does his duty as a good soldier, waiting for the sound of the trumpet which shall sound the retreat.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g168",
+      "title": "The things or objects themselves reach…",
+      "body": "The things or objects themselves reach not unto the soul. It is from the opinion only which is within that all the tumult doth proceed.",
+      "attribution": "Meditations, trans. George Long",
+      "tags": [
+        "stoicism",
+        "soul"
+      ]
+    },
+    {
+      "id": "g169",
+      "title": "The beginning of philosophy is to know…",
+      "body": "The beginning of philosophy is to know the condition of one's own mind.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "mind",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g170",
+      "title": "Never lead a life not subjected to…",
+      "body": "Never lead a life not subjected to examination.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "life"
+      ]
+    },
+    {
+      "id": "g171",
+      "title": "Anytus and Melitus may put me to death…",
+      "body": "Anytus and Melitus may put me to death: to injure me is beyond their power.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g172",
+      "title": "Not death or pain is to be feared, but…",
+      "body": "Not death or pain is to be feared, but the fear of death or pain.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "emotions",
+        "impermanence",
+        "suffering"
+      ]
+    },
+    {
+      "id": "g173",
+      "title": "A good man does nothing for appearance's…",
+      "body": "A good man does nothing for appearance's sake, but for the sake of having done right.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g174",
+      "title": "He is free who lives as he wishes to…",
+      "body": "He is free who lives as he wishes to live; who is not subject to compulsion, nor to hindrance, nor to force.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "freedom"
+      ]
+    },
+    {
+      "id": "g175",
+      "title": "The door stands open. Do not be more…",
+      "body": "The door stands open. Do not be more cowardly than children, but do as they do.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g176",
+      "title": "Is there smoke in the room? If slight, I…",
+      "body": "Is there smoke in the room? If slight, I remain; if grievous, I quit it. For you must always remember and hold to this, that the door stands open.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g177",
+      "title": "Habits and faculties are necessarily…",
+      "body": "Habits and faculties are necessarily affected by the corresponding acts. If you wish to be a reader, read; if you wish to be a writer, write.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g178",
+      "title": "Send now, O God, any trial that Thou…",
+      "body": "Send now, O God, any trial that Thou wilt; I have means and powers, given me by Thee, to honour myself through whatever comes.",
+      "attribution": "Golden Sayings, trans. Hastings Crossley",
+      "tags": [
+        "stoicism",
+        "present moment",
+        "self"
+      ]
+    },
+    {
+      "id": "g179",
+      "title": "Therefore the sage manages affairs…",
+      "body": "Therefore the sage manages affairs without doing anything, and conveys his instructions without the use of speech.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "speech"
+      ]
+    },
+    {
+      "id": "g180",
+      "title": "When wealth and honours lead to…",
+      "body": "When wealth and honours lead to arrogancy, this brings its evil on itself.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "self"
+      ]
+    },
+    {
+      "id": "g181",
+      "title": "It produces them and does not claim them…",
+      "body": "It produces them and does not claim them as its own; it does all, and yet does not boast of it.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g182",
+      "title": "Therefore the sage seeks to satisfy the…",
+      "body": "Therefore the sage seeks to satisfy the craving of the belly, and not the insatiable longing of the eyes.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g183",
+      "title": "Who can make the muddy water clear? Let…",
+      "body": "Who can make the muddy water clear? Let it be still, and it will gradually become clear.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "nature",
+        "stillness"
+      ]
+    },
+    {
+      "id": "g184",
+      "title": "A violent wind does not last for a whole…",
+      "body": "A violent wind does not last for a whole morning; a sudden rain does not last for the whole day.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "morning",
+        "nature"
+      ]
+    },
+    {
+      "id": "g185",
+      "title": "He who displays himself does not shine…",
+      "body": "He who displays himself does not shine; he who asserts his own views is not distinguished.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "self"
+      ]
+    },
+    {
+      "id": "g186",
+      "title": "There was something undefined and…",
+      "body": "There was something undefined and complete, coming into existence before Heaven and Earth. How still it was and formless, standing alone and undergoing no change.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "impermanence",
+        "solitude",
+        "stillness"
+      ]
+    },
+    {
+      "id": "g187",
+      "title": "The skilful traveller leaves no traces of…",
+      "body": "The skilful traveller leaves no traces of his wheels or footsteps.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g188",
+      "title": "He who knows others is wise. He who knows…",
+      "body": "He who knows others is wise. He who knows himself is intelligent. He who overcomes others is strong. He who overcomes himself is mighty.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "present moment",
+        "self",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g189",
+      "title": "The soft overcomes the hard; and the weak…",
+      "body": "The soft overcomes the hard; and the weak the strong.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g190",
+      "title": "The Tao in its regular course does…",
+      "body": "The Tao in its regular course does nothing for the sake of doing it, and so there is nothing which it does not do.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g191",
+      "title": "The movement of the Tao by contraries…",
+      "body": "The movement of the Tao by contraries proceeds; and weakness marks the course of Tao's mighty deeds.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g192",
+      "title": "That which has no substantial existence…",
+      "body": "That which has no substantial existence enters where there is no crevice. I know hereby what advantage belongs to doing nothing.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g193",
+      "title": "Who knows to stop incurs no blame. From…",
+      "body": "Who knows to stop incurs no blame. From danger free long live shall he.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "emotions",
+        "freedom",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g194",
+      "title": "There is no guilt greater than to…",
+      "body": "There is no guilt greater than to sanction ambition; no calamity greater than to be discontented with one's lot.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g195",
+      "title": "He who knows the Tao does not care to…",
+      "body": "He who knows the Tao does not care to speak about it; he who is ever ready to speak about it does not know it.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g196",
+      "title": "There is nothing in the world more soft…",
+      "body": "There is nothing in the world more soft and weak than water, and yet for attacking things that are firm and strong there is nothing that can take precedence of it.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "nature"
+      ]
+    },
+    {
+      "id": "g197",
+      "title": "If we could renounce our sageness and…",
+      "body": "If we could renounce our sageness and discard our wisdom, it would be better for the people a hundredfold.",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g198",
+      "title": "What makes me liable to great calamity is…",
+      "body": "What makes me liable to great calamity is my having the body which I call myself. If I had not the body, what great calamity could come to me?",
+      "attribution": "Tao Te Ching, trans. James Legge",
+      "tags": [
+        "taoism",
+        "body",
+        "self"
+      ]
+    },
+    {
+      "id": "g199",
+      "title": "Never the spirit was born; the spirit…",
+      "body": "Never the spirit was born; the spirit shall cease to be never. Never was time it was not; End and Beginning are dreams.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "soul",
+        "time"
+      ]
+    },
+    {
+      "id": "g200",
+      "title": "So putteth by the spirit lightly its garb…",
+      "body": "So putteth by the spirit lightly its garb of flesh, and passeth to inherit a residence afresh.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "body",
+        "soul"
+      ]
+    },
+    {
+      "id": "g201",
+      "title": "Work is more excellent than idleness; the…",
+      "body": "Work is more excellent than idleness; the body's life proceeds not, lacking work.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "action",
+        "body",
+        "life"
+      ]
+    },
+    {
+      "id": "g202",
+      "title": "Let each man raise the Self by Soul, not…",
+      "body": "Let each man raise the Self by Soul, not trample down his Self; since Soul that is Self's friend may grow Self's foe.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "friendship",
+        "self",
+        "soul"
+      ]
+    },
+    {
+      "id": "g203",
+      "title": "Steadfast a lamp burns sheltered from the…",
+      "body": "Steadfast a lamp burns sheltered from the wind; such is the likeness of the Yogi's mind shut from sense-storms and burning bright to Heaven.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "mind",
+        "nature"
+      ]
+    },
+    {
+      "id": "g204",
+      "title": "The world is overcome—aye! even here!—by…",
+      "body": "The world is overcome—aye! even here!—by such as fix their faith on Unity.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism"
+      ]
+    },
+    {
+      "id": "g205",
+      "title": "Whoso shall offer Me in faith and love a…",
+      "body": "Whoso shall offer Me in faith and love a leaf, a flower, a fruit, water poured forth, that offering I accept, lovingly made with pious will.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "loving kindness",
+        "nature"
+      ]
+    },
+    {
+      "id": "g206",
+      "title": "Who hateth nought of all which lives…",
+      "body": "Who hateth nought of all which lives, living himself benign, compassionate, from arrogance and self-love free, the same is My beloved.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "compassion",
+        "freedom",
+        "loving kindness",
+        "self"
+      ]
+    },
+    {
+      "id": "g207",
+      "title": "He sees indeed who sees in all alike the…",
+      "body": "He sees indeed who sees in all alike the living, lordly Soul; the Soul of Souls, undying in the dying.",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "soul"
+      ]
+    },
+    {
+      "id": "g208",
+      "title": "The soul of the ungoverned is not his…",
+      "body": "The soul of the ungoverned is not his, nor hath he knowledge of himself; and how shall he who knows not himself know others, or the way of peace?",
+      "attribution": "The Song Celestial (Bhagavad Gita), trans. Edwin Arnold",
+      "tags": [
+        "hinduism",
+        "peace",
+        "present moment",
+        "self",
+        "soul"
+      ]
+    },
+    {
+      "id": "g209",
+      "title": "Nothing, Lucilius, is ours, except time.…",
+      "body": "Nothing, Lucilius, is ours, except time. We were entrusted by nature with the ownership of this single thing, so fleeting and slippery that anyone who will can oust us from possession.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "nature",
+        "time"
+      ]
+    },
+    {
+      "id": "g210",
+      "title": "While we are postponing, life speeds by.",
+      "body": "While we are postponing, life speeds by.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "life"
+      ]
+    },
+    {
+      "id": "g211",
+      "title": "We are mistaken when we look forward to…",
+      "body": "We are mistaken when we look forward to death; the major portion of death has already passed. Whatever years lie behind us are in death's hands.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g212",
+      "title": "The largest portion of our life passes…",
+      "body": "The largest portion of our life passes while we are doing ill, a goodly share while we are doing nothing, and the whole while we are doing that which is not to the purpose.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "life",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g213",
+      "title": "Death arrives; it would be a thing to…",
+      "body": "Death arrives; it would be a thing to dread, if it could remain with you. But death must either not come at all, or else must come and pass away.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g214",
+      "title": "Most men ebb and flow in wretchedness…",
+      "body": "Most men ebb and flow in wretchedness between the fear of death and the hardships of life; they are unwilling to live, and yet they do not know how to die.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "emotions",
+        "impermanence",
+        "life",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g215",
+      "title": "Poverty brought into conformity with the…",
+      "body": "Poverty brought into conformity with the law of nature is great wealth.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "nature"
+      ]
+    },
+    {
+      "id": "g216",
+      "title": "Cease to hope, and you will cease to fear.",
+      "body": "Cease to hope, and you will cease to fear.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "emotions"
+      ]
+    },
+    {
+      "id": "g217",
+      "title": "The present alone can make no man…",
+      "body": "The present alone can make no man wretched.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "present moment",
+        "solitude"
+      ]
+    },
+    {
+      "id": "g218",
+      "title": "He is a great man who uses earthenware…",
+      "body": "He is a great man who uses earthenware dishes as if they were silver; but he is equally great who uses silver as if it were earthenware.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g219",
+      "title": "To consort with the crowd is harmful…",
+      "body": "To consort with the crowd is harmful; there is no person who does not make some vice attractive to us, or stamp it upon us, or taint us unconsciously therewith.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g220",
+      "title": "Withdraw into yourself, as far as you…",
+      "body": "Withdraw into yourself, as far as you can. Associate with those who will make a better man of you. Welcome those whom you yourself can improve.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "self"
+      ]
+    },
+    {
+      "id": "g221",
+      "title": "One man means as much to me as a…",
+      "body": "One man means as much to me as a multitude, and a multitude only as much as one man.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g222",
+      "title": "Your good qualities should face inwards.",
+      "body": "Your good qualities should face inwards.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g223",
+      "title": "Let us cherish and love old age; for it…",
+      "body": "Let us cherish and love old age; for it is full of pleasure if one knows how to use it.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "loving kindness",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g224",
+      "title": "Every day ought to be regulated as if it…",
+      "body": "Every day ought to be regulated as if it closed the series, as if it rounded out and completed our existence.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g225",
+      "title": "How comforting it is to have tired out…",
+      "body": "How comforting it is to have tired out one's appetites, and to have done with them!",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g226",
+      "title": "It is wrong to live under constraint; but…",
+      "body": "It is wrong to live under constraint; but no man is constrained to live under constraint.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g227",
+      "title": "The very soul must be happy and…",
+      "body": "The very soul must be happy and confident, lifted above every circumstance.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "soul"
+      ]
+    },
+    {
+      "id": "g228",
+      "title": "Every joy that is only plated lacks a…",
+      "body": "Every joy that is only plated lacks a real basis.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "joy"
+      ]
+    },
+    {
+      "id": "g229",
+      "title": "True joy comes from a good conscience…",
+      "body": "True joy comes from a good conscience, from honourable purposes, from right actions, from contempt of the gifts of chance.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "action",
+        "joy",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g230",
+      "title": "Some men have left off living before they…",
+      "body": "Some men have left off living before they have begun.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism"
+      ]
+    },
+    {
+      "id": "g231",
+      "title": "At whatever point you leave off living…",
+      "body": "At whatever point you leave off living, provided you leave off nobly, your life is a whole.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "life"
+      ]
+    },
+    {
+      "id": "g232",
+      "title": "For life, if courage to die be lacking…",
+      "body": "For life, if courage to die be lacking, is slavery.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "life"
+      ]
+    },
+    {
+      "id": "g233",
+      "title": "It is with life as it is with a play — it…",
+      "body": "It is with life as it is with a play — it matters not how long the action is spun out, but how good the acting is.",
+      "attribution": "Letters to Lucilius, trans. Richard Gummere",
+      "tags": [
+        "stoicism",
+        "action",
+        "life",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g234",
+      "title": "An Unnamed Nun",
+      "body": "Sleep softly, little nun,\nwrapped in the cloth you sewed yourself;\nfor your desire has been quelled,\nlike vegetables boiled dry in a pot.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "emotions",
+        "self"
+      ]
+    },
+    {
+      "id": "g235",
+      "title": "Muttā",
+      "body": "Muttā, be released from your yokes,\nlike the moon released from the eclipse.\nWhen your mind is released,\nenjoy your alms free of debt.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom",
+        "joy",
+        "mind"
+      ]
+    },
+    {
+      "id": "g236",
+      "title": "Puṇṇā",
+      "body": "Puṇṇā, be filled with good qualities,\nlike the moon on the fifteenth day.\nWhen your wisdom is full,\nshatter the mass of darkness.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "virtue",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g237",
+      "title": "Tissā",
+      "body": "Tissā, train in the trainings—\ndon't let your yokes overcome you.\nUnyoked from all yokes,\nlive in the world free of defilements.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom"
+      ]
+    },
+    {
+      "id": "g238",
+      "title": "Another Tissā",
+      "body": "Tissā, apply yourself to good qualities—\ndon't let the moment pass you by.\nFor if you miss your moment,\nyou'll grieve when sent to hell.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "present moment",
+        "self",
+        "virtue"
+      ]
+    },
+    {
+      "id": "g239",
+      "title": "Dhīrā",
+      "body": "Dhīrā, touch cessation,\nthe blissful settling of perception.\nWin extinguishment,\nthe supreme sanctuary from the yoke.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g240",
+      "title": "Mittā",
+      "body": "Having gone forth in faith,\nappreciate your spiritual friends.\nDevelop skillful qualities\nfor the sake of sanctuary from the yoke.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "friendship",
+        "soul"
+      ]
+    },
+    {
+      "id": "g241",
+      "title": "Upasamā",
+      "body": "Upasamā, cross the flood,\nDeath's dominion so hard to pass.\nWhen you have vanquished Māra and his mount,\nbear your final body.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "body",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g242",
+      "title": "Abhirūpanandā",
+      "body": "Meditate on the signless,\ngive up the tendency to conceit;\nand when you comprehend conceit,\nyou will live at peace.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "peace"
+      ]
+    },
+    {
+      "id": "g243",
+      "title": "Sumaṅgala's Mother",
+      "body": "I'm well freed, so very well freed!\nGreed and hate sizzle and hiss\nas I squelch them.\nHaving gone to the root of a tree,\nI meditate happily, thinking, 'Oh, what bliss!'",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom",
+        "joy",
+        "nature"
+      ]
+    },
+    {
+      "id": "g244",
+      "title": "Aḍḍhakāsi",
+      "body": "Don't journey on and on,\ntransmigrating through rebirths!\nI've realized the three knowledges,\nand fulfilled the Buddha's instructions.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "present moment",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g245",
+      "title": "Mittā",
+      "body": "I don't long for the host of gods,\nfor stress has been removed from my heart.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g246",
+      "title": "Uttamā",
+      "body": "Four or five times I left my dwelling.\nI had failed to find peace of heart,\nor any control over my mind.\nOn the eighth day I stretched out my feet,\nhaving shattered the mass of darkness.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "mind",
+        "peace",
+        "time"
+      ]
+    },
+    {
+      "id": "g247",
+      "title": "Ubbirī",
+      "body": "You cry 'My child!' in the forest—\neighty-four thousand people, all named the same,\nhave been burnt in this funeral ground:\nwhich one do you grieve for?",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g248",
+      "title": "Ubbirī",
+      "body": "Today I've plucked the arrow,\nI'm hungerless, quenched.\nI go for refuge to that sage, the Buddha,\nto his teaching, and to the Sangha.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g249",
+      "title": "Vīrā",
+      "body": "She bears her final body,\nhaving vanquished Māra with his legions.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "body"
+      ]
+    },
+    {
+      "id": "g250",
+      "title": "The Serpent",
+      "body": "When anger surges, they drive it out,\nas with medicine a snake's spreading venom.\nSuch a mendicant sheds the near shore and the far,\nas a serpent its old worn-out skin.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "emotions"
+      ]
+    },
+    {
+      "id": "g251",
+      "title": "The Serpent",
+      "body": "They've cut off greed entirely,\nlike a lotus plucked flower and stalk.\nThey've cut off craving entirely,\ndrying up that swift-flowing stream.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g252",
+      "title": "The Discourse on Love (Metta Sutta)",
+      "body": "May all beings be happy!\nWhatever living creatures there are\nwith not a one left out—\nmay all beings be happy!",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g253",
+      "title": "The Discourse on Love (Metta Sutta)",
+      "body": "Even as a mother would protect with her life\nher child, her only child,\nso too for all creatures\nunfold a boundless heart.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "life"
+      ]
+    },
+    {
+      "id": "g254",
+      "title": "The Discourse on Love (Metta Sutta)",
+      "body": "With love for the whole world,\nunfold a boundless heart:\nabove, below, all round,\nunconstricted, without enmity or foe.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "loving kindness"
+      ]
+    },
+    {
+      "id": "g255",
+      "title": "The perfect man ignores self; the divine…",
+      "body": "The perfect man ignores self; the divine man ignores action; the true Sage ignores reputation.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism",
+        "action",
+        "self"
+      ]
+    },
+    {
+      "id": "g256",
+      "title": "My life has a limit, but my knowledge is…",
+      "body": "My life has a limit, but my knowledge is without limit. To drive the limited in search of the limitless is fatal.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism",
+        "life",
+        "present moment",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g257",
+      "title": "Cultivate fasting — not bodily fasting…",
+      "body": "Cultivate fasting — not bodily fasting, but the fasting of the heart. Only through emptying the heart can the Tao find residence within.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g258",
+      "title": "When subjective and objective are both…",
+      "body": "When subjective and objective are both without their correlates, that is the very axis of Tao. At this centre, all distinctions dissolve into unity.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g259",
+      "title": "Perfect Tao does not declare itself. Nor…",
+      "body": "Perfect Tao does not declare itself. Nor does perfect argument express itself in words.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism",
+        "self",
+        "speech"
+      ]
+    },
+    {
+      "id": "g260",
+      "title": "The Tao which shines forth is not Tao.…",
+      "body": "The Tao which shines forth is not Tao. Any manifestation of the ultimate necessarily limits it.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g261",
+      "title": "Once I dreamed I was a butterfly. Upon…",
+      "body": "Once I dreamed I was a butterfly. Upon waking, I could not determine whether I was a man dreaming butterfly-hood, or a butterfly dreaming humanity.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g262",
+      "title": "The Cook",
+      "body": "I follow such openings or cavities as there may be, according to the natural constitution of the animal — never where there is no natural cavity.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism"
+      ]
+    },
+    {
+      "id": "g263",
+      "title": "The fuel is consumed, but the fire may be…",
+      "body": "The fuel is consumed, but the fire may be transmitted. We know not where it ends.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g264",
+      "title": "Wild fowl peck once per ten steps and…",
+      "body": "Wild fowl peck once per ten steps and drink once per hundred, yet they resist cage-feeding. Freedom matters more than guaranteed sustenance.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism",
+        "freedom"
+      ]
+    },
+    {
+      "id": "g265",
+      "title": "The worthless tree, rejected by…",
+      "body": "The worthless tree, rejected by carpenters for its twisted branches, survives precisely because it offers no utility to those seeking to exploit it.",
+      "attribution": "Zhuangzi, trans. Herbert Giles",
+      "tags": [
+        "taoism",
+        "nature"
+      ]
+    },
+    {
+      "id": "g266",
+      "title": "The Discourse on Love (Metta Sutta)",
+      "body": "Let none deceive another,\nnor look down on anyone anywhere.\nThough provoked or aggrieved,\nlet them not wish pain on each other.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "suffering"
+      ]
+    },
+    {
+      "id": "g267",
+      "title": "An Unnamed Nun",
+      "body": "In the twenty-five years since I went forth\nI have not found peace of mind,\neven for as long as a finger-snap.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "mind",
+        "peace"
+      ]
+    },
+    {
+      "id": "g268",
+      "title": "Sundarīnandā",
+      "body": "Then, growing disillusioned with the body,\nI became dispassionate within.\nDiligent, detached,\nI'm quenched and at peace.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "body",
+        "peace"
+      ]
+    },
+    {
+      "id": "g269",
+      "title": "Soṇā",
+      "body": "Curse you, wretched old age!\nnow there'll be no more future lives.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g270",
+      "title": "Paṭācārā",
+      "body": "Then, grabbing the pin, I drew out the wick.\nThe liberation of my heart\nwas like the quenching of the lamp.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom"
+      ]
+    },
+    {
+      "id": "g271",
+      "title": "Paṭācārā",
+      "body": "One whose path you do not know,\nnot whence they came nor where they went—\nyou mourn that being, crying, 'Oh my son!'\nBut one whose path you do know,\nthat one you do not lament:\nsuch is the nature of living creatures.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "nature",
+        "present moment"
+      ]
+    },
+    {
+      "id": "g272",
+      "title": "Vāseṭṭhī",
+      "body": "All sorrows are cut off,\ngiven up, they end here.\nI've fully understood the basis\nfrom which grief comes to be.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "emotions"
+      ]
+    },
+    {
+      "id": "g273",
+      "title": "Sujātā",
+      "body": "Right there I found the stainless Dhamma,\nthe state free of death.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom",
+        "impermanence"
+      ]
+    },
+    {
+      "id": "g274",
+      "title": "Guttā",
+      "body": "Foster the goal for which you went forth;\ndo not fall under the mind's control.\nBeings deceived by the mind,\nplaying in Māra's domain,\nignorant, they journey on,\ntransmigrating through countless rebirths.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "mind"
+      ]
+    },
+    {
+      "id": "g275",
+      "title": "Guttā",
+      "body": "When you're rid of desire,\nconceit, ignorance, and restlessness,\nhaving cut the fetters,\nyou'll make an end to suffering.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "emotions",
+        "suffering"
+      ]
+    },
+    {
+      "id": "g276",
+      "title": "Kisāgotamī",
+      "body": "Associate with true persons,\nfor that is how wisdom grows.\nShould you associate with true persons,\nyou would be freed from all suffering.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom",
+        "suffering",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g277",
+      "title": "Kisāgotamī",
+      "body": "I've plucked out the dart,\nlaid down the burden,\nand done what needed to be done.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism"
+      ]
+    },
+    {
+      "id": "g278",
+      "title": "Ambapālī",
+      "body": "This bag of bones, once so beautiful,\nnow it's withered, home to so much pain,\na house in decay with plaster crumbling—\nthe word of the truthful one is confirmed.",
+      "attribution": "Therigatha, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "body",
+        "present moment",
+        "speech",
+        "suffering"
+      ]
+    },
+    {
+      "id": "g279",
+      "title": "The Horned Rhino",
+      "body": "When you've laid down arms toward all creatures,\nnot harming even a single one,\ndon't wish for a child, let alone a companion:\nlive alone like a horned rhino.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "solitude"
+      ]
+    },
+    {
+      "id": "g280",
+      "title": "The Horned Rhino",
+      "body": "As a wild deer loose in the forest\ngrazes wherever it wants,\na smart person looking for freedom\nwould live alone like a horned rhino.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom",
+        "solitude"
+      ]
+    },
+    {
+      "id": "g281",
+      "title": "The Horned Rhino",
+      "body": "If you find an alert companion,\nan attentive friend to live happily together,\nthen, overcoming all adversities,\nwander with them, joyful and mindful.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "friendship",
+        "joy",
+        "mind"
+      ]
+    },
+    {
+      "id": "g282",
+      "title": "The Horned Rhino",
+      "body": "In time, cultivate freedom through love,\ncompassion, rejoicing, and equanimity.\nNot upset by anything in the world,\nlive alone like a horned rhino.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "compassion",
+        "equanimity",
+        "freedom",
+        "loving kindness"
+      ]
+    },
+    {
+      "id": "g283",
+      "title": "The Horned Rhino",
+      "body": "Like a lion not startled by sounds,\nlike wind not caught in a net,\nlike water not sticking to a lotus,\nlive alone like a horned rhino.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "nature",
+        "solitude"
+      ]
+    },
+    {
+      "id": "g284",
+      "title": "The Horned Rhino",
+      "body": "Having burst apart the fetters,\nlike a fish that tears the net and swims free,\nor a fire not returning to ground it has burned,\nlive alone like a horned rhino.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "freedom",
+        "solitude"
+      ]
+    },
+    {
+      "id": "g285",
+      "title": "Blessings (Mangala Sutta)",
+      "body": "Not to fraternize with fools,\nbut to fraternize with the wise,\nand honoring those worthy of honor:\nthis is the highest blessing.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "g286",
+      "title": "Blessings (Mangala Sutta)",
+      "body": "Education and a craft,\ndiscipline and training,\nand well-spoken speech:\nthis is the highest blessing.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "speech"
+      ]
+    },
+    {
+      "id": "g287",
+      "title": "Blessings (Mangala Sutta)",
+      "body": "Caring for mother and father,\nkindness to children and partners,\nand unstressful work:\nthis is the highest blessing.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "action"
+      ]
+    },
+    {
+      "id": "g288",
+      "title": "Blessings (Mangala Sutta)",
+      "body": "Respect and placidity,\ncontentment and gratitude,\nand timely listening to the teaching:\nthis is the highest blessing.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "gratitude",
+        "time"
+      ]
+    },
+    {
+      "id": "g289",
+      "title": "Blessings (Mangala Sutta)",
+      "body": "Though touched by worldly things,\ntheir mind does not tremble;\nsorrowless, stainless, secure:\nthis is their highest blessing.",
+      "attribution": "Sutta Nipata, trans. Bhikkhu Sujato (CC0)",
+      "tags": [
+        "buddhism",
+        "mind"
+      ]
     }
   ]
 }
