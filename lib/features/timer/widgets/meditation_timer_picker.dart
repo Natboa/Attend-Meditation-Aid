@@ -14,7 +14,7 @@ class MeditationTimerPicker extends StatelessWidget {
   final ValueChanged<MeditationTimer> onChanged;
 
   String _formatTimerLabel(MeditationTimer timer) {
-    final durStr = timer.duration != null ? '${timer.duration!.inMinutes}m' : '∞';
+    final durStr = timer.duration != null ? '${timer.duration!.inMinutes}m' : '';
     if (timer.interval != null) {
       return '$durStr (${timer.interval!.inMinutes}m bell)';
     }

@@ -105,15 +105,19 @@ class _PoemOfDayCard extends ConsumerWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  gatha.title,
-                  style: AppTextStyles.heading(context).copyWith(
-                    color: scheme.onSurface,
-                    fontSize: 18,
+                if (gatha.hasRealTitle) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    gatha.title,
+                    style: AppTextStyles.heading(context).copyWith(
+                      color: scheme.onSurface,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
+                  const SizedBox(height: 8),
+                ] else ...[
+                  const SizedBox(height: 12),
+                ],
                 Text(
                   gatha.preview(lines: 3),
                   style: AppTextStyles.poem(context).copyWith(

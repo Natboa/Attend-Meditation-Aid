@@ -31,7 +31,7 @@ class GathaDetailScreen extends ConsumerWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              gatha.title,
+              gatha.displayTitle,
               style: AppTextStyles.heading(context),
               overflow: TextOverflow.ellipsis,
             ),
@@ -52,8 +52,9 @@ class GathaDetailScreen extends ConsumerWidget {
                 icon: const Icon(Icons.copy_outlined),
                 tooltip: 'Copy poem',
                 onPressed: () {
-                  final text = '${gatha.title}\n\n${gatha.body}'
-                      '${gatha.attribution != null ? '\n\n— ${gatha.attribution}' : ''}';
+                  final titlePart = gatha.hasRealTitle ? '${gatha.title}\n\n' : '';
+                  final attrPart = gatha.attribution != null ? '\n\n— ${gatha.attribution}' : '';
+                  final text = '$titlePart${gatha.body}$attrPart';
                   Clipboard.setData(ClipboardData(text: text));
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -73,7 +74,7 @@ class GathaDetailScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    gatha.title,
+                    gatha.displayTitle,
                     style: AppTextStyles.heading(context).copyWith(
                       fontSize: 24,
                       color: scheme.onSurface,

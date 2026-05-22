@@ -15,7 +15,10 @@ class MeditationTimerRepository {
     }
     try {
       final list = jsonDecode(jsonString) as List<dynamic>;
-      return list.map((e) => MeditationTimer.fromJson(e as Map<String, dynamic>)).toList();
+      return list
+          .map((e) => MeditationTimer.fromJson(e as Map<String, dynamic>))
+          .where((t) => t.duration != null)
+          .toList();
     } catch (_) {
       return _defaultTimers();
     }
@@ -50,12 +53,6 @@ class MeditationTimerRepository {
         id: 'default_20m',
         duration: Duration(minutes: 20),
         interval: Duration(minutes: 5),
-        soundId: 'tibetan_bowl',
-      ),
-      const MeditationTimer(
-        id: 'default_open',
-        duration: null,
-        interval: null,
         soundId: 'tibetan_bowl',
       ),
     ];

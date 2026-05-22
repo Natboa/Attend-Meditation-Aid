@@ -30,6 +30,37 @@ class Gatha {
     return allLines.take(lines).join('\n');
   }
 
+  bool get hasRealTitle => !title.endsWith('…') && !title.endsWith('...');
+
+  String get displayTitle {
+    if (hasRealTitle) return title;
+    final attr = attribution;
+    if (attr != null) {
+      final lower = attr.toLowerCase();
+      if (lower.contains('dhammapada')) return 'Dhammapada Verse';
+      if (lower.contains('therigatha')) return 'Therigatha Verse';
+      if (lower.contains('sutta nipata')) return 'Sutta Nipata Verse';
+      if (lower.contains('meditations') ||
+          lower.contains('enchiridion') ||
+          lower.contains('lucilius') ||
+          lower.contains('stoic') ||
+          lower.contains('golden sayings')) {
+        return 'Stoic Reflection';
+      }
+      if (lower.contains('tao te ching') || lower.contains('zhuangzi')) {
+        return 'Taoist Reflection';
+      }
+      if (lower.contains('analects')) return 'Confucian Reflection';
+      if (lower.contains('bhagavad gita') || lower.contains('song celestial')) {
+        return 'Bhagavad Gita Verse';
+      }
+      final cleanAttr = attr.split(',').first.trim();
+      return '$cleanAttr Quote';
+    }
+    return 'Wisdom Verse';
+  }
+
+
   factory Gatha.fromJson(Map<String, dynamic> json) => Gatha(
         id: json['id'] as String,
         title: json['title'] as String,

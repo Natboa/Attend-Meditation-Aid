@@ -20,7 +20,6 @@ class TimerFormDialog extends StatefulWidget {
 class _TimerFormDialogState extends State<TimerFormDialog> {
   final _formKey = GlobalKey<FormState>();
   
-  late bool _isOpenEnded;
   late final TextEditingController _durationController;
   late bool _enableIntervals;
   late final TextEditingController _intervalController;
@@ -34,7 +33,6 @@ class _TimerFormDialogState extends State<TimerFormDialog> {
     super.initState();
     final t = widget.timer;
 
-    _isOpenEnded = t != null && t.duration == null;
     _durationController = TextEditingController(
       text: t?.duration != null ? t!.duration!.inMinutes.toString() : '10',
     );
@@ -79,7 +77,7 @@ class _TimerFormDialogState extends State<TimerFormDialog> {
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
 
-    final durationMin = _isOpenEnded ? null : int.tryParse(_durationController.text);
+    final durationMin = int.tryParse(_durationController.text);
     final intervalMin = _enableIntervals ? int.tryParse(_intervalController.text) : null;
 
     final result = MeditationTimer(
@@ -104,47 +102,32 @@ class _TimerFormDialogState extends State<TimerFormDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Open-ended Toggle
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Open-ended session'),
-                subtitle: const Text('Infinite timer (no automatic end)'),
-                value: _isOpenEnded,
-                onChanged: (val) {
-                  setState(() {
-                    _isOpenEnded = val;
-                  });
+              // Duration Input
+              TextFormField(
+                controller: _durationController,
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                decoration: InputDecoration(
+                  labelText: 'Duration (Minutes)',
+                  hintText: 'e.g. 15',
+                  filled: true,
+                  fillColor: scheme.surfaceContainerHighest,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    return 'Please enter a duration';
+                  }
+                  final num = int.tryParse(val);
+                  if (num == null || num <= 0) {
+                    return 'Must be greater than 0';
+                  }
+                  return null;
                 },
               ),
-              const SizedBox(height: 12),
-
-              // Duration Input (if not open-ended)
-              if (!_isOpenEnded)
-                TextFormField(
-                  controller: _durationController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  decoration: InputDecoration(
-                    labelText: 'Duration (Minutes)',
-                    hintText: 'e.g. 15',
-                    filled: true,
-                    fillColor: scheme.surfaceContainerHighest,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return 'Please enter a duration';
-                    }
-                    final num = int.tryParse(val);
-                    if (num == null || num <= 0) {
-                      return 'Must be greater than 0';
-                    }
-                    return null;
-                  },
-                ),
               const SizedBox(height: 16),
 
               // Interval Bells Toggle
@@ -185,11 +168,9 @@ class _TimerFormDialogState extends State<TimerFormDialog> {
                     if (intervalNum == null || intervalNum <= 0) {
                       return 'Must be greater than 0';
                     }
-                    if (!_isOpenEnded) {
-                      final durNum = int.tryParse(_durationController.text) ?? 0;
-                      if (durNum > 0 && intervalNum >= durNum) {
-                        return 'Interval must be less than duration';
-                      }
+                    final durNum = int.tryParse(_durationController.text) ?? 0;
+                    if (durNum > 0 && intervalNum >= durNum) {
+                      return 'Interval must be less than duration';
                     }
                     return null;
                   },
@@ -202,6 +183,7 @@ class _TimerFormDialogState extends State<TimerFormDialog> {
                 children: [
                   Expanded(
                     child: DropdownButtonFormField<String>(
+                      isExpanded: true,
                       initialValue: _selectedSoundId,
                       decoration: InputDecoration(
                         labelText: 'Timer Sound',

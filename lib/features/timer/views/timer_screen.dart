@@ -78,10 +78,10 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
 
   String _displayTime(TimerState s, MeditationTimer? selectedTimer) {
     if (s.isIdle) {
-      if (selectedTimer?.duration == null) {
-        return '∞';
+      if (selectedTimer?.duration != null) {
+        return DurationFormatter.format(selectedTimer!.duration!);
       }
-      return DurationFormatter.format(selectedTimer!.duration!);
+      return '00:00';
     }
     if (s.target == null) {
       return DurationFormatter.format(s.elapsed);
@@ -303,7 +303,7 @@ class _IdleControls extends StatelessWidget {
     if (duration != null) {
       startLabel = 'Begin ${DurationFormatter.label(duration)}';
     } else {
-      startLabel = 'Begin Open Session';
+      startLabel = 'Begin Session';
     }
 
     return Column(

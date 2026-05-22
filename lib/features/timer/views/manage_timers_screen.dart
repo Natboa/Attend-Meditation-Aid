@@ -108,7 +108,7 @@ class ManageTimersScreen extends ConsumerWidget {
                 final timer = timers[index];
                 final sound = SoundOption.findById(timer.soundId);
 
-                final durLabel = timer.duration != null ? '${timer.duration!.inMinutes} minutes' : 'Open session (∞)';
+                final durLabel = timer.duration != null ? '${timer.duration!.inMinutes} minutes' : '';
                 final intLabel = timer.interval != null ? 'Interval bell: every ${timer.interval!.inMinutes}m' : 'No interval bells';
                 final soundLabel = 'Sound: ${sound.displayName}';
 
@@ -127,7 +127,7 @@ class ManageTimersScreen extends ConsumerWidget {
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        timer.duration != null ? Icons.timer_outlined : Icons.all_inclusive_rounded,
+                        Icons.timer_outlined,
                         color: scheme.primary,
                       ),
                     ),

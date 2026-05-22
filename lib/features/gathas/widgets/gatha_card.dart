@@ -29,7 +29,7 @@ class GathaCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      gatha.title,
+                      gatha.displayTitle,
                       style: AppTextStyles.heading(context).copyWith(
                         fontSize: 16,
                         color: scheme.onSurface,
