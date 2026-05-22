@@ -5,6 +5,7 @@ import '../../features/home/views/home_screen.dart';
 import '../../features/onboarding/views/onboarding_screen.dart';
 import '../../features/timer/views/timer_screen.dart';
 import '../../features/timer/views/session_history_screen.dart';
+import '../../features/timer/views/manage_timers_screen.dart';
 import '../../features/gathas/views/gatha_library_screen.dart';
 import '../../features/gathas/views/gatha_detail_screen.dart';
 import '../../features/notifications/views/notification_settings_screen.dart';
@@ -48,6 +49,12 @@ final routerProvider = Provider<GoRouter>((ref) {
                 name: 'session-history',
                 parentNavigatorKey: _rootNavigatorKey,
                 builder: (context, state) => const SessionHistoryScreen(),
+              ),
+              GoRoute(
+                path: 'manage',
+                name: 'manage-timers',
+                parentNavigatorKey: _rootNavigatorKey,
+                builder: (context, state) => const ManageTimersScreen(),
               ),
             ],
           ),

@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_text_styles.dart';
-import '../../../core/providers/repositories.dart';
+import '../../../core/models/meditation_timer.dart';
 import '../../../core/utils/duration_formatter.dart';
+import '../providers/meditation_timers_provider.dart';
 import '../providers/timer_provider.dart';
 import '../providers/timer_state.dart';
+import '../widgets/meditation_timer_picker.dart';
 import '../widgets/timer_dial.dart';
-import '../widgets/duration_picker.dart';
-import '../widgets/interval_picker.dart';
 
 class TimerScreen extends ConsumerStatefulWidget {
   const TimerScreen({super.key});
@@ -20,19 +20,6 @@ class TimerScreen extends ConsumerStatefulWidget {
 
 class _TimerScreenState extends ConsumerState<TimerScreen>
     with TickerProviderStateMixin {
-  // Default to 5 min; user can pick from the chip list, add custom, or ∞
-  Duration? _selectedDuration = const Duration(minutes: 5);
-  Duration? _selectedInterval;
-  List<Duration> _durationChips = const [
-    Duration(minutes: 5),
-    Duration(minutes: 10),
-  ];
-  List<Duration> _intervalChips = const [
-    Duration(minutes: 5),
-    Duration(minutes: 10),
-    Duration(minutes: 15),
-  ];
-
   // Captured when session finishes, shown on completion overlay
   Duration _completedElapsed = Duration.zero;
   bool _showCompletion = false;
@@ -89,58 +76,17 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
     super.dispose();
   }
 
-  String _displayTime(TimerState s) {
-    if (s.isIdle || s.target == null) {
-      return DurationFormatter.format(
-        _selectedDuration ?? const Duration(minutes: 5),
-      );
+  String _displayTime(TimerState s, MeditationTimer? selectedTimer) {
+    if (s.isIdle) {
+      if (selectedTimer?.duration == null) {
+        return '∞';
+      }
+      return DurationFormatter.format(selectedTimer!.duration!);
+    }
+    if (s.target == null) {
+      return DurationFormatter.format(s.elapsed);
     }
     return DurationFormatter.format(s.remaining);
-  }
-
-  String _timerSoundId() => ref.read(settingsRepositoryProvider).timerSoundId;
-
-  Future<void> _openCustomDurationDialog() async {
-    final result = await showCustomDurationDialog(context);
-    if (result != null) {
-      setState(() {
-        if (!_durationChips.contains(result)) {
-          _durationChips = [..._durationChips, result];
-        }
-        _selectedDuration = result;
-      });
-    }
-  }
-
-  Future<void> _openCustomIntervalDialog() async {
-    final result = await showCustomIntervalDialog(context);
-    if (result != null) {
-      setState(() {
-        if (!_intervalChips.contains(result)) {
-          _intervalChips = [..._intervalChips, result];
-        }
-        _selectedInterval = result;
-      });
-    }
-  }
-
-  void _removeDuration(Duration d) {
-    setState(() {
-      _durationChips = _durationChips.where((c) => c != d).toList();
-      if (_selectedDuration == d) {
-        _selectedDuration =
-            _durationChips.isNotEmpty ? _durationChips.first : null;
-      }
-    });
-  }
-
-  void _removeInterval(Duration d) {
-    setState(() {
-      _intervalChips = _intervalChips.where((c) => c != d).toList();
-      if (_selectedInterval == d) {
-        _selectedInterval = null;
-      }
-    });
   }
 
   Future<void> _dismissCompletion() async {
@@ -153,6 +99,8 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
   Widget build(BuildContext context) {
     final timer = ref.watch(timerProvider);
     final notifier = ref.read(timerProvider.notifier);
+    final timers = ref.watch(meditationTimersProvider);
+    final selectedTimer = ref.watch(selectedTimerProvider);
 
     ref.listen(timerProvider, (prev, next) {
       if (next.isFinished && !(prev?.isFinished ?? false)) {
@@ -167,12 +115,28 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
       appBar: AppBar(
         title: const Text('Timer'),
         actions: [
-          if (!timer.isActive)
+          if (!timer.isActive) ...[
             IconButton(
               icon: const Icon(Icons.history_outlined),
               tooltip: 'Session history',
               onPressed: () => context.pushNamed('session-history'),
             ),
+            PopupMenuButton<String>(
+              icon: const Icon(Icons.more_vert_rounded),
+              tooltip: 'More options',
+              onSelected: (val) {
+                if (val == 'manage') {
+                  context.pushNamed('manage-timers');
+                }
+              },
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: 'manage',
+                  child: Text('Manage Presets'),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
       body: Stack(
@@ -185,7 +149,7 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                   const SizedBox(height: 16),
                   Expanded(
                     flex: 5,
-                    child: Center(child: _buildDial(context, timer)),
+                    child: Center(child: _buildDial(context, timer, selectedTimer)),
                   ),
                   const SizedBox(height: 16),
                   // Animated switch between idle pickers and active controls
@@ -206,29 +170,19 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                     child: timer.isIdle
                         ? _IdleControls(
                             key: const ValueKey('idle'),
-                            selectedDuration: _selectedDuration,
-                            selectedInterval: _selectedInterval,
-                            durationChips: _durationChips,
-                            intervalChips: _intervalChips,
-                            onDurationChanged: (d) =>
-                                setState(() => _selectedDuration = d),
-                            onIntervalChanged: (d) =>
-                                setState(() => _selectedInterval = d),
-                            onAddDuration: _openCustomDurationDialog,
-                            onAddInterval: _openCustomIntervalDialog,
-                            onRemoveDuration: _removeDuration,
-                            onRemoveInterval: _removeInterval,
+                            timers: timers,
+                            selectedTimer: selectedTimer,
+                            onTimerSelected: (t) {
+                              ref.read(selectedTimerProvider.notifier).select(t);
+                            },
                             onStart: () {
                               HapticFeedback.mediumImpact();
                               notifier.start(
-                                target: _selectedDuration,
-                                interval: _selectedInterval,
-                                soundId: _timerSoundId(),
+                                target: selectedTimer?.duration,
+                                interval: selectedTimer?.interval,
+                                soundId: selectedTimer?.soundId ?? 'tibetan_bowl',
                               );
                             },
-                            selectedDurationLabel: _selectedDuration != null
-                                ? DurationFormatter.label(_selectedDuration!)
-                                : null,
                           )
                         : timer.isActive
                             ? _ActiveControls(
@@ -268,7 +222,7 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
     );
   }
 
-  Widget _buildDial(BuildContext context, TimerState timer) {
+  Widget _buildDial(BuildContext context, TimerState timer, MeditationTimer? selectedTimer) {
     final scheme = Theme.of(context).colorScheme;
     final isRunning = timer.isRunning;
 
@@ -276,21 +230,11 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
         ? Color.lerp(scheme.primary, scheme.secondary, 0.6)!
         : scheme.primary;
 
-    // When idle, tapping the time display opens the custom duration dialog
-    final timeWidget = timer.isIdle
-        ? GestureDetector(
-            onTap: _openCustomDurationDialog,
-            child: Text(
-              _displayTime(timer),
-              style: AppTextStyles.timerDisplay(context)
-                  .copyWith(color: scheme.onSurface),
-            ),
-          )
-        : Text(
-            _displayTime(timer),
-            style: AppTextStyles.timerDisplay(context)
-                .copyWith(color: scheme.onSurface),
-          );
+    final timeWidget = Text(
+      _displayTime(timer, selectedTimer),
+      style: AppTextStyles.timerDisplay(context)
+          .copyWith(color: scheme.onSurface),
+    );
 
     return Center(
       child: AnimatedBuilder(
@@ -336,66 +280,44 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
   }
 }
 
-// ── Idle state: duration + interval pickers + start button ─────────────────
+// ── Idle state: custom presets picker + start button ─────────────────
 
 class _IdleControls extends StatelessWidget {
   const _IdleControls({
     super.key,
-    required this.selectedDuration,
-    required this.selectedInterval,
-    required this.durationChips,
-    required this.intervalChips,
-    required this.onDurationChanged,
-    required this.onIntervalChanged,
-    required this.onAddDuration,
-    required this.onAddInterval,
-    required this.onRemoveDuration,
-    required this.onRemoveInterval,
+    required this.timers,
+    required this.selectedTimer,
+    required this.onTimerSelected,
     required this.onStart,
-    required this.selectedDurationLabel,
   });
 
-  final Duration? selectedDuration;
-  final Duration? selectedInterval;
-  final List<Duration> durationChips;
-  final List<Duration> intervalChips;
-  final ValueChanged<Duration?> onDurationChanged;
-  final ValueChanged<Duration?> onIntervalChanged;
-  final VoidCallback onAddDuration;
-  final VoidCallback onAddInterval;
-  final ValueChanged<Duration> onRemoveDuration;
-  final ValueChanged<Duration> onRemoveInterval;
+  final List<MeditationTimer> timers;
+  final MeditationTimer? selectedTimer;
+  final ValueChanged<MeditationTimer> onTimerSelected;
   final VoidCallback onStart;
-  final String? selectedDurationLabel;
 
   @override
   Widget build(BuildContext context) {
+    String startLabel;
+    final duration = selectedTimer?.duration;
+    if (duration != null) {
+      startLabel = 'Begin ${DurationFormatter.label(duration)}';
+    } else {
+      startLabel = 'Begin Open Session';
+    }
+
     return Column(
       children: [
-        DurationPicker(
-          selected: selectedDuration,
-          onChanged: onDurationChanged,
-          durations: durationChips,
-          onAdd: onAddDuration,
-          onRemove: onRemoveDuration,
-        ),
-        const SizedBox(height: 20),
-        IntervalPicker(
-          selected: selectedInterval,
-          onChanged: onIntervalChanged,
-          intervals: intervalChips,
-          onAdd: onAddInterval,
-          onRemove: onRemoveInterval,
+        MeditationTimerPicker(
+          timers: timers,
+          selected: selectedTimer,
+          onChanged: onTimerSelected,
         ),
         const SizedBox(height: 32),
         FilledButton.icon(
           onPressed: onStart,
           icon: const Icon(Icons.play_arrow_rounded),
-          label: Text(
-            selectedDurationLabel != null
-                ? 'Begin $selectedDurationLabel'
-                : 'Begin (open)',
-          ),
+          label: Text(startLabel),
           style: FilledButton.styleFrom(
             minimumSize: const Size(200, 52),
             textStyle: Theme.of(context).textTheme.titleMedium,
