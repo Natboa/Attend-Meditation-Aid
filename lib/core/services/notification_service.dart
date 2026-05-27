@@ -1,8 +1,59 @@
+import 'dart:isolate';
+import 'dart:ui';
+import 'package:flutter/foundation.dart'; // added for debugPrint
+import 'package:flutter/material.dart'; // added for WidgetsFlutterBinding
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/sound_option.dart';
 import 'timer_notification_controller.dart';
+
+@pragma('vm:entry-point')
+Future<void> _notificationTapBackground(NotificationResponse response) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  debugPrint('APP ISOLATE: _notificationTapBackground called with action ${response.actionId}');
+  
+  // Eagerly update the notification UI before the main isolate wakes up.
+  if (response.actionId != null && response.payload != null && response.payload!.isNotEmpty) {
+    try {
+      final int remainingSeconds = int.tryParse(response.payload!) ?? 0;
+      final remaining = Duration(seconds: remainingSeconds);
+      final plugin = FlutterLocalNotificationsPlugin();
+      if (response.actionId == 'timer_pause') {
+        await plugin.show(
+          NotificationService._timerNotifId,
+          NotificationService.formatRemaining(remaining),
+          'Paused',
+          NotificationDetails(android: NotificationService.pausedDetails()),
+          payload: response.payload,
+        );
+      } else if (response.actionId == 'timer_resume') {
+        await plugin.show(
+          NotificationService._timerNotifId,
+          NotificationService.formatRemaining(remaining),
+          'Session in progress',
+          NotificationDetails(android: NotificationService.runningDetails()),
+          payload: response.payload,
+        );
+      }
+    } catch (e) {
+      debugPrint('Eager notification update failed: $e');
+    }
+  }
+
+  // Try sending to the main isolate first
+  final SendPort? sendPort =
+      IsolateNameServer.lookupPortByName('attend_timer_notification_port');
+  
+  debugPrint('APP ISOLATE: sendPort found? ${sendPort != null}');
+  
+  if (sendPort != null) {
+    sendPort.send(response.actionId);
+  } else {
+    // Fallback if we happen to already be in the main isolate
+    TimerNotificationController.instance.handleAction(response.actionId);
+  }
+}
 
 class NotificationService {
   NotificationService._();
@@ -28,6 +79,7 @@ class NotificationService {
     await _plugin.initialize(
       initSettings,
       onDidReceiveNotificationResponse: _onNotificationResponse,
+      onDidReceiveBackgroundNotificationResponse: _notificationTapBackground,
     );
 
     await _createChannel(
@@ -66,8 +118,38 @@ class NotificationService {
     }
   }
 
+  // Set to true when we eagerly update the notification in-handler so the
+  // redundant call from pause()/resume() in the state chain is skipped.
+  static bool _skipNextTimerUpdate = false;
+
   static void _onNotificationResponse(NotificationResponse response) {
+    if (response.payload != null && response.payload!.isNotEmpty) {
+      final remainingSeconds = int.tryParse(response.payload!) ?? 0;
+      final remaining = Duration(seconds: remainingSeconds);
+      if (response.actionId == 'timer_pause') {
+        _skipNextTimerUpdate = true;
+        instance._plugin.show(
+          _timerNotifId,
+          formatRemaining(remaining),
+          'Paused',
+          NotificationDetails(android: pausedDetails()),
+          payload: response.payload,
+        );
+      } else if (response.actionId == 'timer_resume') {
+        _skipNextTimerUpdate = true;
+        instance._plugin.show(
+          _timerNotifId,
+          formatRemaining(remaining),
+          'Session in progress',
+          NotificationDetails(android: runningDetails()),
+          payload: response.payload,
+        );
+      }
+    }
     TimerNotificationController.instance.handleAction(response.actionId);
+    // Safety reset in case handleAction didn't consume the flag
+    // (e.g. onPause/onResume wasn't registered).
+    Future.microtask(() => _skipNextTimerUpdate = false);
   }
 
   // ── Timer notification ────────────────────────────────────────────────────
@@ -75,39 +157,43 @@ class NotificationService {
   /// Shows an ongoing timer notification. Call when the session starts.
   Future<void> showTimerNotification({
     required Duration remaining,
-    required String soundName,
   }) async {
     await _plugin.show(
       _timerNotifId,
-      'Attend',
-      soundName,
-      NotificationDetails(
-        android: _runningDetails(remaining),
-      ),
+      formatRemaining(remaining),
+      'Session in progress',
+      NotificationDetails(android: runningDetails()),
+      payload: remaining.inSeconds.toString(),
     );
   }
 
   /// Updates the notification for a pause state.
   Future<void> pauseTimerNotification(Duration remaining) async {
+    if (_skipNextTimerUpdate) {
+      _skipNextTimerUpdate = false;
+      return; // already updated eagerly in _onNotificationResponse
+    }
     await _plugin.show(
       _timerNotifId,
+      formatRemaining(remaining),
       'Paused',
-      _formatRemaining(remaining),
-      NotificationDetails(
-        android: _pausedDetails(remaining),
-      ),
+      NotificationDetails(android: pausedDetails()),
+      payload: remaining.inSeconds.toString(),
     );
   }
 
   /// Updates the notification back to the running countdown.
   Future<void> resumeTimerNotification(Duration remaining) async {
+    if (_skipNextTimerUpdate) {
+      _skipNextTimerUpdate = false;
+      return; // already updated eagerly in _onNotificationResponse
+    }
     await _plugin.show(
       _timerNotifId,
-      'Attend',
-      null,
-      NotificationDetails(
-        android: _runningDetails(remaining),
-      ),
+      formatRemaining(remaining),
+      'Session in progress',
+      NotificationDetails(android: runningDetails()),
+      payload: remaining.inSeconds.toString(),
     );
   }
 
@@ -116,9 +202,8 @@ class NotificationService {
     await _plugin.cancel(_timerNotifId);
   }
 
-  AndroidNotificationDetails _runningDetails(Duration remaining) {
-    final endMs = DateTime.now().add(remaining).millisecondsSinceEpoch;
-    return AndroidNotificationDetails(
+  static AndroidNotificationDetails runningDetails() {
+    return const AndroidNotificationDetails(
       _timerChannelId,
       'Timer session',
       channelDescription: 'Active meditation timer',
@@ -128,19 +213,16 @@ class NotificationService {
       autoCancel: false,
       silent: true,
       visibility: NotificationVisibility.public,
-      when: endMs,
-      usesChronometer: true,
-      chronometerCountDown: true,
-      showWhen: true,
-      actions: const [
-        AndroidNotificationAction('timer_pause', 'Pause'),
-        AndroidNotificationAction('timer_stop', 'Stop'),
+      onlyAlertOnce: true,
+      actions: [
+        AndroidNotificationAction('timer_pause', 'Pause', cancelNotification: false),
+        AndroidNotificationAction('timer_stop', 'Stop', cancelNotification: false),
       ],
     );
   }
 
-  AndroidNotificationDetails _pausedDetails(Duration remaining) {
-    return AndroidNotificationDetails(
+  static AndroidNotificationDetails pausedDetails() {
+    return const AndroidNotificationDetails(
       _timerChannelId,
       'Timer session',
       channelDescription: 'Active meditation timer',
@@ -150,15 +232,15 @@ class NotificationService {
       autoCancel: false,
       silent: true,
       visibility: NotificationVisibility.public,
-      showWhen: false,
-      actions: const [
-        AndroidNotificationAction('timer_resume', 'Resume'),
-        AndroidNotificationAction('timer_stop', 'Stop'),
+      onlyAlertOnce: true,
+      actions: [
+        AndroidNotificationAction('timer_resume', 'Resume', cancelNotification: false),
+        AndroidNotificationAction('timer_stop', 'Stop', cancelNotification: false),
       ],
     );
   }
 
-  String _formatRemaining(Duration d) {
+  static String formatRemaining(Duration d) {
     final m = d.inMinutes.remainder(60).toString().padLeft(2, '0');
     final s = d.inSeconds.remainder(60).toString().padLeft(2, '0');
     return '${d.inHours > 0 ? '${d.inHours}:' : ''}$m:$s remaining';

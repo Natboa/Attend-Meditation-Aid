@@ -4,7 +4,7 @@
 
 A minimal meditation timer and mindfulness companion for Android. Attend combines a flexible session timer, scheduled mindfulness bells, and a library of 289 wisdom poems (gathas) from Buddhist, Stoic, Taoist, Confucian, and Hindu traditions.
 
-![Version](https://img.shields.io/badge/version-1.0.4-blue)
+![Version](https://img.shields.io/badge/version-1.0.6-blue)
 ![Platform](https://img.shields.io/badge/platform-Android-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
@@ -13,9 +13,8 @@ A minimal meditation timer and mindfulness companion for Android. Attend combine
 ## Features
 
 **Meditation Timer**
-- Set any session duration with quick-select chips
+- Create and save custom presets — set a duration and optional interval bell, manage via the three-dots menu
 - Pause and resume mid-session
-- Optional interval bells every 5, 10, or 15 minutes
 - Customizable completion and bell sounds
 - Session history with elapsed times
 

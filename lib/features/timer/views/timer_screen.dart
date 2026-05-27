@@ -34,6 +34,10 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
   late Animation<double> _cardScale;
   late Animation<double> _checkScale;
 
+  // Brief scale pulse on pause / resume
+  late AnimationController _pausePulseController;
+  late Animation<double> _pausePulseScale;
+
   @override
   void initState() {
     super.initState();
@@ -67,12 +71,33 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
         curve: const Interval(0.35, 1.0, curve: Curves.elasticOut),
       ),
     );
+
+    _pausePulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 320),
+    );
+    // easeIn on the way up (accelerates into peak) + easeOut on the way down
+    // (decelerates from peak) — both segments meet at max velocity so there
+    // is no pause or stop at the top.
+    _pausePulseScale = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween(begin: 1.0, end: 1.07)
+            .chain(CurveTween(curve: Curves.easeIn)),
+        weight: 40,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 1.07, end: 1.0)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 60,
+      ),
+    ]).animate(_pausePulseController);
   }
 
   @override
   void dispose() {
     _pulseController.dispose();
     _completionController.dispose();
+    _pausePulseController.dispose();
     super.dispose();
   }
 
@@ -142,21 +167,40 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
       body: Stack(
         children: [
           SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: [
-                  const SizedBox(height: 16),
-                  Expanded(
-                    flex: 5,
-                    child: Center(child: _buildDial(context, timer, selectedTimer)),
+            child: Stack(
+              children: [
+                // The SizedBox(height: 220) at the bottom is a stable reserve
+                // for the controls area, so Expanded never resizes and the dial
+                // never shifts when controls change height.
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      Expanded(
+                        child: Center(child: _buildDial(context, timer, selectedTimer)),
+                      ),
+                      const SizedBox(height: 220),
+                    ],
                   ),
-                  const SizedBox(height: 16),
-                  // Animated switch between idle pickers and active controls
-                  AnimatedSwitcher(
+                ),
+                // Controls are independently pinned to the bottom of the safe
+                // area so their height never affects the dial above.
+                Positioned(
+                  left: 24,
+                  right: 24,
+                  bottom: MediaQuery.paddingOf(context).bottom + 8,
+                  child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     switchInCurve: Curves.easeOut,
                     switchOutCurve: Curves.easeIn,
+                    layoutBuilder: (currentChild, previousChildren) => Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        ...previousChildren,
+                        ?currentChild,
+                      ],
+                    ),
                     transitionBuilder: (child, animation) => FadeTransition(
                       opacity: animation,
                       child: SlideTransition(
@@ -194,6 +238,7 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                                 },
                                 onTogglePause: () {
                                   HapticFeedback.lightImpact();
+                                  _pausePulseController.forward(from: 0);
                                   if (timer.isRunning) {
                                     notifier.pause();
                                   } else {
@@ -203,9 +248,8 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
                               )
                             : const SizedBox.shrink(key: ValueKey('finished')),
                   ),
-                  SizedBox(height: MediaQuery.paddingOf(context).bottom + 8),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           // Completion overlay
@@ -238,9 +282,16 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
 
     return Center(
       child: AnimatedBuilder(
-        animation: _pulseAnimation,
+        animation: Listenable.merge([_pulseAnimation, _pausePulseController]),
         builder: (context, child) {
-          final scale = isRunning ? _pulseAnimation.value : 1.0;
+          final double scale;
+          if (_pausePulseController.isAnimating) {
+            scale = _pausePulseScale.value;
+          } else if (isRunning) {
+            scale = _pulseAnimation.value;
+          } else {
+            scale = 1.0;
+          }
           return Transform.scale(scale: scale, child: child);
         },
         child: TweenAnimationBuilder<Color?>(
@@ -255,23 +306,34 @@ class _TimerScreenState extends ConsumerState<TimerScreen>
             mainAxisSize: MainAxisSize.min,
             children: [
               timeWidget,
-              if (timer.isActive && timer.interval != null)
-                Text(
-                  'every ${DurationFormatter.label(timer.interval!)}',
+              // maintainSize keeps the layout stable — no shift when text appears/hides
+              Visibility(
+                visible: timer.isActive && timer.interval != null,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Text(
+                  'every ${DurationFormatter.label(timer.interval ?? Duration.zero)}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: scheme.onSurface.withAlpha(120),
                       ),
                 ),
-              if (timer.isPaused)
-                Padding(
+              ),
+              Visibility(
+                visible: timer.isPaused,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
                     'paused',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: scheme.onSurface.withAlpha(120),
                         ),
                   ),
                 ),
+              ),
             ],
           ),
         ),

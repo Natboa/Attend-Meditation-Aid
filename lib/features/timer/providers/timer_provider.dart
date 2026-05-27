@@ -14,6 +14,7 @@ class TimerNotifier extends Notifier<TimerState> {
   static const _tickInterval = Duration(milliseconds: 100);
 
   Timer? _ticker;
+  int _sessionToken = 0;
 
   @override
   TimerState build() {
@@ -28,6 +29,9 @@ class TimerNotifier extends Notifier<TimerState> {
   }) async {
     _ticker?.cancel();
 
+    final token = ++_sessionToken;
+    final now = DateTime.now();
+
     final settings = ref.read(settingsRepositoryProvider);
 
     state = TimerState(
@@ -36,32 +40,37 @@ class TimerNotifier extends Notifier<TimerState> {
       target: target,
       interval: interval,
       soundId: soundId,
-      startedAt: DateTime.now(),
+      startedAt: now,
       lastIntervalAt: Duration.zero,
     );
-
-    if (target != null) {
-      await settings.setLastDurationSeconds(target.inSeconds);
-    }
-
-    await WakelockPlus.enable();
-    // Play the opening bell and wait for it to finish before the countdown starts
-    await AudioService.instance.playBellAndAwait(soundId);
-
-    // Update startedAt to after the bell, so elapsed time is accurate
-    state = state.copyWith(startedAt: DateTime.now());
 
     // Register notification action callbacks
     _registerNotificationCallbacks();
 
-    // Show the timer notification
-    final soundName = SoundOption.findById(soundId).displayName;
-    await NotificationService.instance.showTimerNotification(
-      remaining: target ?? const Duration(hours: 9),
-      soundName: soundName,
-    );
-
+    // Start ticking immediately; platform side-effects should not delay the countdown.
     _ticker = Timer.periodic(_tickInterval, _onTick);
+
+    if (target != null) {
+      unawaited(settings.setLastDurationSeconds(target.inSeconds));
+    }
+
+    unawaited(() async {
+      await WakelockPlus.enable();
+    }());
+
+    // Show the timer notification (guard against stop/restart races).
+    unawaited(() async {
+      if (token != _sessionToken) return;
+      await NotificationService.instance.showTimerNotification(
+        remaining: target ?? const Duration(hours: 9),
+      );
+    }());
+
+    // Play the opening bell in the background (guard against stop/restart races).
+    unawaited(() async {
+      if (token != _sessionToken) return;
+      await AudioService.instance.playBell(soundId);
+    }());
   }
 
   void _registerNotificationCallbacks() {
@@ -75,7 +84,10 @@ class TimerNotifier extends Notifier<TimerState> {
     final s = state;
     if (!s.isRunning) return;
 
-    final newElapsed = s.elapsed + _tickInterval;
+    final startedAt = s.startedAt;
+    if (startedAt == null) return;
+
+    final newElapsed = DateTime.now().difference(startedAt);
 
     // Check interval bell
     Duration newLastInterval = s.lastIntervalAt;
@@ -95,6 +107,15 @@ class TimerNotifier extends Notifier<TimerState> {
       return;
     }
 
+    // Since we're pushing manual text updates instead of using the OS chronometer,
+    // update the notification every second (but not faster) to avoid spamming the system.
+    final prevElapsedSec = s.elapsed.inSeconds;
+    final newElapsedSec = newElapsed.inSeconds;
+    if (newElapsedSec > prevElapsedSec) {
+      final remaining = s.target != null ? s.target! - newElapsed : const Duration(hours: 9);
+      unawaited(NotificationService.instance.showTimerNotification(remaining: remaining));
+    }
+
     state = s.copyWith(
       elapsed: newElapsed,
       lastIntervalAt: newLastInterval,
@@ -103,8 +124,12 @@ class TimerNotifier extends Notifier<TimerState> {
 
   void pause() {
     if (!state.isRunning) return;
+    final startedAt = state.startedAt;
+    final elapsedNow = startedAt != null
+        ? DateTime.now().difference(startedAt)
+        : state.elapsed;
     _ticker?.cancel();
-    state = state.copyWith(status: TimerStatus.paused);
+    state = state.copyWith(status: TimerStatus.paused, elapsed: elapsedNow);
     final remaining = state.target != null
         ? state.target! - state.elapsed
         : const Duration(hours: 9);
@@ -113,8 +138,10 @@ class TimerNotifier extends Notifier<TimerState> {
 
   void resume() {
     if (!state.isPaused) return;
+    // Re-anchor startedAt so that DateTime.now() - startedAt == current elapsed.
+    final newStartedAt = DateTime.now().subtract(state.elapsed);
     _ticker = Timer.periodic(_tickInterval, _onTick);
-    state = state.copyWith(status: TimerStatus.running);
+    state = state.copyWith(status: TimerStatus.running, startedAt: newStartedAt);
     final remaining = state.target != null
         ? state.target! - state.elapsed
         : const Duration(hours: 9);
@@ -123,12 +150,40 @@ class TimerNotifier extends Notifier<TimerState> {
 
   Future<void> stop() async {
     if (!state.isActive) return;
+
+    _sessionToken++;
     _ticker?.cancel();
-    await _saveSession(state.elapsed, completed: false);
-    await WakelockPlus.disable();
-    await NotificationService.instance.cancelTimerNotification();
     TimerNotificationController.instance.clear();
+
+    // Capture everything needed for session save before resetting state.
+    final startedAt = state.startedAt;
+    final elapsedNow = (state.isRunning && startedAt != null)
+        ? DateTime.now().difference(startedAt)
+        : state.elapsed;
+    final soundId = state.soundId;
+    final target = state.target;
+    final interval = state.interval;
+
+    // Reset UI immediately so the user isn't stuck looking at the running timer
+    // while async cleanup (save, wakelock, notification cancel) finishes.
     state = const TimerState();
+
+    unawaited(NotificationService.instance.cancelTimerNotification());
+    unawaited(WakelockPlus.disable());
+    if (elapsedNow.inSeconds >= 5) {
+      unawaited(() async {
+        final session = TimerSession(
+          id: const Uuid().v4(),
+          startedAt: startedAt ?? DateTime.now(),
+          durationSeconds: elapsedNow.inSeconds,
+          targetSeconds: target?.inSeconds,
+          completed: false,
+          soundId: soundId,
+          intervalSeconds: interval?.inSeconds,
+        );
+        await ref.read(sessionRepositoryProvider).save(session);
+      }());
+    }
   }
 
   Future<void> _finish(Duration elapsed, {required bool completed}) async {

@@ -34,22 +34,26 @@ final meditationTimersProvider = NotifierProvider<MeditationTimersNotifier, List
 class SelectedTimerNotifier extends Notifier<MeditationTimer?> {
   @override
   MeditationTimer? build() {
-    ref.listen<List<MeditationTimer>>(meditationTimersProvider, (previous, next) {
-      final current = state;
-      if (current == null) {
-        if (next.isNotEmpty) {
-          state = next.first;
-        }
-      } else {
-        // Keep current selected if it still exists in the list (possibly updated)
-        final matches = next.where((t) => t.id == current.id);
-        if (matches.isNotEmpty) {
-          state = matches.first;
+    ref.listen<List<MeditationTimer>>(
+      meditationTimersProvider,
+      (previous, next) {
+        final current = state;
+        if (current == null) {
+          if (next.isNotEmpty) {
+            state = next.first;
+          }
         } else {
-          state = next.isNotEmpty ? next.first : null;
+          // Keep current selected if it still exists in the list (possibly updated)
+          final matches = next.where((t) => t.id == current.id);
+          if (matches.isNotEmpty) {
+            state = matches.first;
+          } else {
+            state = next.isNotEmpty ? next.first : null;
+          }
         }
-      }
-    });
+      },
+      fireImmediately: false,
+    );
 
     final initialTimers = ref.read(meditationTimersProvider);
     return initialTimers.isNotEmpty ? initialTimers.first : null;
